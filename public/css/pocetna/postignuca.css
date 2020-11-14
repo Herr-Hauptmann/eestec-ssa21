@@ -1,0 +1,71 @@
+.sve-postignuca {
+    background-color: #D4FFF8;
+}
+
+.prvi-red {
+    font-size: 5.5vh;
+    font-style: bold;
+    letter-spacing: 0;
+    color: #475677;
+    opacity: 1;
+}
+
+.drugi-red {
+    text-align: center;
+    font-size: 2.2vh;
+    letter-spacing: 0;
+    color: #7D8597;
+    opacity: 1;
+}
+
+.kolone-glavna {
+    text-align: center;
+}
+
+.kolone {
+    text-align: center;
+    font-size: 1vh;
+    letter-spacing: 0;
+    color: #2680EB;
+    opacity: 1;
+}
+
+.kolone_red11 {
+    font-size: 5vh;
+    letter-spacing: 0;
+    color: #2680EB;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.kolone_red12 {
+    text-align: right !important;
+    font-size: 5vh;
+    letter-spacing: 0;
+    color: #00B592;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.kolone_red13 {
+    font-size: 5vh;
+    letter-spacing: 0;
+    color: #FFBE58;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.kolone_red14 {
+    font-size: 5vh;
+    letter-spacing: 0;
+    color: #E0474E;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.kolone_red2 {
+    font-size: 2.2vh;
+    letter-spacing: 0;
+    color: #7D8597;
+    opacity: 1;
+}

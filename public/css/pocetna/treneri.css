@@ -1,0 +1,39 @@
+#treneri {
+    padding-top: 7vw;
+    padding-left: 7vw;
+    padding-right: 7vw;
+}
+
+.treneri-card {
+    height: 30vw;
+    width: 20vw;
+    background-color: cadetblue;
+}
+
+.scrolling-wrapper {
+    overflow-x: auto;
+}
+
+#treneri img {
+    width: 19.8vw;
+    height: 19.8vw;
+}
+
+.treneri-title {
+    font-size: 1.5vw;
+}
+
+.treneri-tekst {
+    font-size: 1vw;
+}
+
+.treneri-card-body {
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media (max-width: 575.98px) {
+    .treneri-card {
+        height: 40vw;
+    }
+}

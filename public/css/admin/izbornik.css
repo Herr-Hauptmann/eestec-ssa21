@@ -1,0 +1,31 @@
+.izbornik {
+    text-align: center;
+}
+
+.active {
+    background-color: #64a89c !important;
+    border: hidden;
+}
+
+.izbornik-div {
+    margin-left: -2vw;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a {
+    color: #464343;
+}
+
+a.list-group-item:hover {
+    background-color: #dee2e6;
+    color: #464343;
+}
+
+a.izbornik-hd,
+a.izbornik-hd:hover {
+    background-color: #00A59C;
+    color: white;
+}

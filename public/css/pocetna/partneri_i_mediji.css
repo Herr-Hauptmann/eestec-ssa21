@@ -1,0 +1,38 @@
+#partneri {
+    padding-top: 5vw;
+}
+
+#mediji {
+    padding-top: 5vw;
+}
+
+.prvi_red {
+    text-align: center;
+    font: Bold 48px/60px Poppins;
+    color: #475677;
+}
+
+.drugi_red {
+    text-align: left;
+    color: #697598;
+    font-size: 22px;
+}
+
+.treci_red {
+    text-align: left;
+    color: #697598;
+    font-size: 22px;
+}
+
+.logoDiv-medij {
+    margin: 20px auto;
+    padding: 10px !important;
+    height: 130px;
+}
+
+.div-responsive_img {
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

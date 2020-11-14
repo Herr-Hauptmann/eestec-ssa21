@@ -1,0 +1,43 @@
+    #novosti {
+        padding-top: 7vw;
+        padding-left: 7vw;
+        padding-right: 7vw;
+    }
+    
+    .btn-floating {
+        cursor: pointer;
+    }
+    
+    .controls-top {
+        text-align: center;
+    }
+    
+    .btn-floating {
+        background-color: teal;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        padding: 0;
+        margin: 10px;
+        overflow: hidden;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all .2s ease-in-out;
+        width: 47px;
+        height: 47px;
+    }
+    
+    .btn-floating i {
+        display: inline-block;
+        width: inherit;
+        color: #fff;
+        text-align: center;
+        font-size: 1.25rem;
+        line-height: 47px;
+    }
+    
+    .fa,
+    .fas {
+        font-weight: 900;
+    }

@@ -1,0 +1,25 @@
+.naslov-sadrzaja {
+    width: 100%;
+    background-color: #00A59C;
+    color: white;
+}
+
+.poravnanje-lijevo {
+    text-align: left;
+    padding: 5px;
+}
+
+body {
+    font-family: Poppins;
+}
+
+.btn-outline-success {
+    border-color: #006762;
+    color: #006762;
+}
+
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+    background-color: #006762 !important;
+    border-color: #006762;
+}

@@ -1,0 +1,67 @@
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: auto;
+}
+
+.sijalica {
+    position: absolute;
+    top: 0;
+    left: -18.49vw;
+    width: 79.74vw;
+    height: 75.1vw;
+    background: transparent;
+}
+
+.plavo {
+    position: relative;
+    top: 4.11vw;
+    left: -1.56vw;
+    width: 38.8vw;
+    height: 65.36vw;
+}
+
+.dots {
+    position: absolute;
+    top: 22.24vw;
+    left: 22.45vw;
+    width: 22.08vw;
+    height: 22.08vw;
+    background: transparent;
+}
+
+.o-nama-naslov {
+    font-weight: bold;
+    margin-top: 5.88vw;
+    color: #00a393;
+}
+
+.o-nama-tekst {
+    font-size: 16px;
+    margin-top: 2.7vw;
+    text-align: justify;
+    letter-spacing: 0;
+    color: #3b3f4d;
+}
+
+.o-nama-naslov1 {
+    font-weight: bold;
+    margin-top: 3.13vw;
+    color: #00a393;
+}
+
+.o-nama-tekst1 {
+    font-size: 16px;
+    margin-top: 1.15vw;
+    text-align: justify;
+    letter-spacing: 0;
+    color: #3b3f4d;
+}
+
+.o-nama-ikona {
+    position: absolute;
+    top: 3.13vw;
+    width: 5.52vw;
+    height: 5.52vw;
+}

@@ -1,0 +1,55 @@
+#drugi-o-nama {
+    padding-top: 7vw;
+}
+
+.uvodni-tekst {
+    font-size: 2.5vh;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+    padding-top: 3%;
+    padding-bottom: 1%;
+}
+
+.card-deck {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    padding-top: 70px;
+}
+
+.drugi-o-nama-naslov {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.slicica {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    right: 0;
+}
+
+.strelice {
+    position: absolute;
+    right: 100px;
+    width: 20%;
+    height: 25px;
+}
+
+.karticaa {
+    transition-duration: 1s;
+}
+
+.overflow-fix {
+    overflow: hidden;
+}
+
+.front {
+    z-index: 9999;
+    position: relative;
+}

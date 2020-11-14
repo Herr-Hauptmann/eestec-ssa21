@@ -1,0 +1,118 @@
+#o_ssa {
+    padding-top: 7vw;
+}
+
+.o-projektu-naslov {
+    text-align: left;
+    font-weight: bold;
+    font-family: Poppins;
+    color: #34c4a9 !important;
+    line-height: 0.8;
+    font-size: 6.6vw;
+}
+
+.tacke {
+    width: 100%;
+    height: 100%;
+}
+
+.lijeve-tacke {
+    margin-top: 20px;
+    height: 80%;
+    width: auto;
+    position: absolute;
+    left: 0px;
+}
+
+.naslov-onama-kartica {
+    text-align: left;
+    letter-spacing: 0.88px;
+    size: 2vh;
+}
+
+.tekst-onama-kartica {
+    text-align: left;
+    font: 18px/28px;
+    letter-spacing: 0;
+    opacity: 1;
+    size: 1.5vh;
+}
+
+.card {
+    height: 100%;
+}
+
+.boja {
+    color: #00a393;
+}
+
+.o_ssa-info {
+    text-align: center;
+    font-size: 1.7vw;
+    letter-spacing: 0.18px;
+    color: #697598;
+    opacity: 0.8;
+}
+
+.naslov-informacije {
+    text-align: left;
+    font-weight: bold;
+    color: #00a393;
+    font-size: 2vw;
+}
+
+.tekst-informacije {
+    text-align: left;
+    color: #000000;
+    font-size: 1.45vw;
+}
+
+.kartice {
+    border-radius: 5px 20px 5px 20px !important;
+}
+
+.card-header {
+    border-radius: 5px 20px 5px 20px !important;
+    background-color: inherit;
+    border-bottom: none;
+}
+
+.cart {
+    background-color: white !important;
+}
+
+.cart:hover {
+    background-color: #34c4a9 !important;
+    color: white !important;
+}
+
+.cart:hover path {
+    fill: white !important;
+    stroke: white !important;
+}
+
+.cart:hover line {
+    fill: white !important;
+    stroke: white !important;
+}
+
+.cart:hover rect {
+    fill: none !important;
+    stroke: white !important;
+}
+
+.card-text {
+    color: inherit !important;
+}
+
+.oblacic-ikona {
+    fill: #a3b4ef;
+}
+
+.osnovna-ikona {
+    fill: #2354f3;
+}
+
+.sporedna-ikona {
+    fill: #0ee5c7;
+}
