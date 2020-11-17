@@ -12,7 +12,7 @@
                 <p>Organizatori</p>
             </div>
             <div class="row m-2 p-1">
-            <a href="{{route('admin.organizatori.create')}}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog organizatora</a>
+            <a href="{{route('organizatori.create')}}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog organizatora</a>
                 <form class="form-inline ml-auto mt-2 mt-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -33,19 +33,19 @@
                 <tbody>
                     @foreach($organizatori as $organizator)
                     <tr>
-                    <th scope="row">1</th>
-                        <td>{{$organizator -> $ime}}</td>
-                        <td>{{$organizator -> $prezime}}</td>
-                        <td>{{$organizator -> $telefon}}</td>
-                        <td>{{$organizator -> $mail}}</td>
+                    <th scope="row">{{$loop->iteration}}</th>
+                        <td>{{ $organizator->ime }}</td>
+                        <td>{{$organizator->prezime}}</td>
+                        <td>{{$organizator->telefon}}</td>
+                        <td>{{$organizator->mail}}</td>
                         <td>
-                            <img src="" class="img-responsive" style="height: 50px;" alt="slika" />
-                        </td>
-                        <td>
-                            <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
                             <a class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
+                            <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}" accept-charset="UTF-8">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn btn-outline-danger btn-sm item" title="delete" onclick="return confirm(&quot;Da li si siguran da želiš obrisati trenera?&quot;)">Delete</button>
+                            </form>
                         </td>
                         </tr>
                     @endforeach

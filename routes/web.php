@@ -44,9 +44,7 @@ Route::post('/admin/edicije', [EdicijaController::class, 'spasiEdiciju'])->name(
 
 
 /* Rute za pregled liste organizatora, dodavanje organizatora, pregled, uređivanje i brisanje organizatora*/
-Route::get('/admin/organizatori', [OrganizatorController::class, 'index'])->name('admin.organizatori');
-Route::get('/admin/organizatori/create', [OrganizatorController::class, 'create'])->name('admin.organizatori.create');
-Route::post('/admin/store', [OrganizatorController::class, 'store'])->name('admin.organizatori.store');
+Route::Resource('/admin/organizatori', OrganizatorController::class);
 
 /* Rute za pregled liste uloga, dodavanje uloge, pregled, uređivanje i brisanje uloga*/
 Route::get('/admin/pozicije', [PozicijaController::class, 'getPozicije'])->name('admin.pozicije');

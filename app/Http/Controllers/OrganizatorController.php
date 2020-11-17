@@ -21,19 +21,16 @@ class OrganizatorController extends Controller
     public function store(Request $request)
     {
         //Validacija podataka
-        $podaci = $request -> validate(['ime' => 'required | min:3', 
+        $request -> validate(['ime' => 'required | min:3', 
                                       'prezime'=> 'required | min:3',
                                       'slika' => 'nullable | image | max:1999',
-                                      'telefon' => 'required | min:11 | max:12 | starts_with:+387',
+                                      'telefon' => 'required | min:12 | max:13 | starts_with:+387',
                                       'mail' => 'required | email:rfc,dns']);
 
-        //Upload slike
-        $imeFajla = 'nemaSlike.jpg';
-        
-        $organizator = Organizator::create($podaci);
-        $organizator -> save();
+        $podaci = $request->all();
+        Organizator::create($podaci);
 
-        return redirect('admin.organizatori');
+        return redirect('admin/organizatori')->with('flash_message', 'Uspjesno ste dodali novog organizatora!');
         
     }
 
@@ -79,6 +76,7 @@ class OrganizatorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Organizator::destroy($id);
+        return redirect('admin/organizatori')->with('flash_message', 'Uspjesno ste izbrisali organizatora!');
     }
 }
