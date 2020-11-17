@@ -14,28 +14,28 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.organizatori') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na organizatore</a>
             </div>
-            <form class="m-5" action="{{ route('admin.organizatori.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.organizatori.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="imeOrganizatora">Ime</label>
-                        <input type="text" class="form-control" id="imeOrganizatora" placeholder="Ime">
+                        <label for="ime">Ime</label>
+                        <input type="text" class="form-control" id="ime" placeholder="Ime">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="prezimeOrganizatora">Prezime</label>
-                        <input type="text" class="form-control" id="prezimeOrganizatora" placeholder="Prezime">
+                        <label for="prezime">Prezime</label>
+                        <input type="text" class="form-control" id="prezime" placeholder="Prezime">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="telefonOrganizatora">Telefon</label>
-                        <input type="text" class="form-control" id="telefonOrganizatora" placeholder="Telefon">
+                        <label for="telefon">Telefon</label>
+                        <input type="text" class="form-control" id="telefon" placeholder="Telefon">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="mailOrganizatora">Mail</label>
-                        <input type="text" class="form-control" id="mailOrganizatora" placeholder="Mail">
+                        <label for="mail">Mail</label>
+                        <input type="text" class="form-control" id="mail" placeholder="Mail">
                     </div>
                     <div class="custom-file col-md-6 mt-4">
-                        <input type="file" class="custom-file-input" id="organizatoriSlika">
-                        <label class="custom-file-label" for="organizatoriSlika">Umetni sliku</label>
+                        <input type="file" class="custom-file-input" id="slika">
+                        <label class="custom-file-label" for="slika">Umetni sliku</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-5">Spasi organizatora</button>
