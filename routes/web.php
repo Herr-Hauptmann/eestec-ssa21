@@ -38,9 +38,11 @@ Route::get('/admin', [EdicijaController::class, 'getEdicije'])->name('admin');
 Route::post('/admin', [EdicijaController::class, 'getEdicije'])->name('admin');
 
 /* Rute za pregled liste edicija, dodavanje edicije, pregled, uređivanje i brisanje edicije*/
-Route::get('/admin/edicije', [EdicijaController::class, 'getEdicije'])->name('admin.edicije');
-Route::get('/admin/edicije/dodavanje', [EdicijaController::class, 'dodajEdiciju'])->name('admin.edicije.dodavanje');
-Route::post('/admin/edicije', [EdicijaController::class, 'spasiEdiciju'])->name('admin.edicije.spasavanje');
+Route::prefix('admin/edicije')->group(function() {
+    Route::get('/', [EdicijaController::class, 'getEditions'])->name('admin.edicije');
+    Route::get('/dodavanje', [EdicijaController::class, 'dodajEdiciju'])->name('admin.edicije.dodavanje');
+    Route::post('/', [EdicijaController::class, 'spasiEdiciju'])->name('admin.edicije.spasavanje');
+});
 
 
 /* Rute za pregled liste organizatora, dodavanje organizatora, pregled, uređivanje i brisanje organizatora*/
