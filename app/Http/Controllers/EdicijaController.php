@@ -12,9 +12,21 @@ class EdicijaController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.edicije.lista');
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $editions = Edicija::where('naziv', 'LIKE', "%$keyword%")
+                ->orWhere('content', 'LIKE', "%$keyword%")
+                ->orderBy('DESC')
+                ->paginate($perPage);
+        } else {
+            $editions = Edicija::paginate($perPage);
+        }
+
+        return view('admin.edicije.index', compact('editions'));
     }
 
     /**
@@ -24,7 +36,7 @@ class EdicijaController extends Controller
      */
     public function create()
     {
-        return view('admin.edicije.dodavanje');
+        return view('admin.edicije.create');
     }
 
     /**
@@ -36,7 +48,7 @@ class EdicijaController extends Controller
     public function store(Request $request)
     {
         //ovdje treba implementirati da se pokupljeni podaci iz forme spase u bazu
-        return view('admin.edicije.lista');
+        return view('admin.edicije.index');
     }
 
     /**
