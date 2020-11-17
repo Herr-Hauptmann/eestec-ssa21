@@ -22,10 +22,10 @@ class IzjavaFactory extends Factory
     public function definition()
     {
         return [
-            'ime' => $this->faker->firstName(),
-            'prezime' => $this->faker->lastName(),
+            'ime' => $this->faker->firstName,
+            'prezime' => $this->faker->lastName,
             'tekst' => $this->faker->text,
-            'slika' => '/img/d11.jpg'
+            'slika' => $this->fake->imageUrl
         ];
     }
 }
