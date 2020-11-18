@@ -1,6 +1,4 @@
 @extends('admin.admin_home')
-
-
 @section('content')
 <div class="container-fluid pt-5 pl-5 izbornik">
     <div class="row">
@@ -18,41 +16,41 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <table class="table teble-responsive table-hover mt-5">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Ime</th>
-                        <th scope="col">Prezime</th>
-                        <th scope="col">Telefon</th>
-                        <th scope="col">Mail</th>
-                        <th scope="col">Slika</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($organizatori as $organizator)
-                    <tr>
-                    <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{ $organizator->ime }}</td>
-                        <td>{{$organizator->prezime}}</td>
-                        <td>{{$organizator->telefon}}</td>
-                        <td>{{$organizator->mail}}</td>
-                        <td>
-                            <a class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                            <a class="btn btn-outline-success btn-sm item">Edit</a>
-                            <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}" accept-charset="UTF-8">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button type="submit" class="btn btn-outline-danger btn-sm item" title="delete" onclick="return confirm(&quot;Da li si siguran da želiš obrisati trenera?&quot;)">Delete</button>
-                            </form>
-                        </td>
+            <div class="table-responsive">
+                <table class="table table-hover mt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ime</th>
+                            <th scope="col">Prezime</th>
+                            <th scope="col">Telefon</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col"></th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($organizatori as $organizator)
+                        <tr>
+                        <th scope="row">{{$loop->iteration}}</th>
+                            <td>{{ $organizator->ime }}</td>
+                            <td>{{$organizator->prezime}}</td>
+                            <td>{{$organizator->telefon}}</td>
+                            <td>{{$organizator->mail}}</td>
+                            <td>
+                                <a class="btn-kontrole btn btn-outline-info btn-sm item"style="display:inline">View</a>
+                                <a class="btn btn-outline-success btn-sm item"style="display:inline">Edit</a>
+                                <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}" accept-charset="UTF-8" style="display:inline">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm item" title="delete" onclick="return confirm(&quot;Da li si siguran da želiš obrisati organizatora?&quot;)">Delete</button>
+                                </form>
+                            </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-{{-- @include('') --}}
 @endsection
