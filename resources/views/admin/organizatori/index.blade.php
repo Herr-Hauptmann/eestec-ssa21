@@ -11,8 +11,8 @@
             </div>
             <div class="row m-2 p-1">
             <a href="{{route('organizatori.create')}}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog organizatora</a>
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline ml-auto mt-2 mt-lg-0" method="GET" action="{{ url()->current() }}" role="search">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search...." value="{{ request('search') }}"aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -28,26 +28,40 @@
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class='tbody'>
                         @foreach($organizatori as $organizator)
                         <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                            <td>{{ $organizator->ime }}</td>
-                            <td>{{$organizator->prezime}}</td>
-                            <td>{{$organizator->telefon}}</td>
-                            <td>{{$organizator->mail}}</td>
-                            <td>
-                                <a class="btn-kontrole btn btn-outline-info btn-sm item"style="display:inline">View</a>
-                                <a class="btn btn-outline-success btn-sm item"style="display:inline">Edit</a>
-                                <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}" accept-charset="UTF-8" style="display:inline">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-outline-danger btn-sm item" title="delete" onclick="return confirm(&quot;Da li si siguran da želiš obrisati organizatora?&quot;)">Delete</button>
-                                </form>
-                            </td>
-                            </tr>
-                        @endforeach
+                        <th scope="row"class="align-middle">{{$loop->iteration+($organizatori->currentPage()-1)*$poStranici}}</th>
+                            <td class="align-middle">{{ $organizator->ime }}</td>
+                            <td class="align-middle">{{$organizator->prezime}}</td>
+                            <td class="align-middle">{{$organizator->telefon}}</td>
+                            <td class="align-middle">{{$organizator->mail}}</td>
+                            <td class="align-middle">
+                                <div class="row">
+                                    <a class="btn-kontrole btn btn-outline-info btn-sm item btn-block mr-1">View</a>
+                                </div>
+                                <div class="row">
+                                    <a class="btn btn-outline-success btn-sm item btn-block mr-1">Edit</a>
+                                </div>
+                                <div class="row">
+                                    <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn-kontrole btn btn-outline-danger btn-sm item btn-block mr-2" title="delete" onclick="return confirm(&quot;Da li si siguran da želiš obrisati organizatora?&quot;)">Delete</button>
+                                    </form>
+                                </div>
+                            </td> 
+                        @endforeach 
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="row align-items-center justify-content-center align-middle">
+                                    {!! $organizatori->appends(['search' => Request::get('search')])->render() !!}
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

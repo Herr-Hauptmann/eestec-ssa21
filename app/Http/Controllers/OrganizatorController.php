@@ -3,13 +3,24 @@
 namespace App\Http\Controllers;
 use App\Models\Organizator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class OrganizatorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $organizatori = Organizator::all();
-        return view('admin.organizatori.index', compact('organizatori'));
+        $poStranici = 15;
+        $keyword = $request->get('search');
+        $organizatori = Organizator::paginate($poStranici);
+        if (!empty($keyword)) {
+            $organizatori =Organizator::
+                    where('ime', 'LIKE', "%$keyword%")
+                    ->orWhere('prezime', 'LIKE', "%$keyword%")
+                    ->orWhere('mail', 'LIKE', "%$keyword%")
+                    ->paginate($poStranici);
+        } 
+        return view('admin.organizatori.index', compact('organizatori', 'poStranici'));
     }
 
     public function create()
