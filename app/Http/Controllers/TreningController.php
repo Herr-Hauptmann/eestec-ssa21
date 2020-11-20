@@ -25,4 +25,12 @@ class TreningController extends Controller
         //ovdje treba implementirati da se pokupljeni podaci iz forme spase u bazu
         return view('admin.treninzi.lista');
     }
+
+    public function showTrening($id)
+    {
+        $trening = Trening::findOrFail($id);
+        return view('admin.treninzi.detalji', [
+            'trening' => $trening,
+        ]);
+    }
 }

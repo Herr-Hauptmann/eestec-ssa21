@@ -17,13 +17,12 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <table class="table teble-responsive table-hover mt-5">
+            <table class="table table-responsive table-hover mt-5">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Opis</th>
-                        <th scope="col">Slika</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -32,13 +31,10 @@
                     <tr>
                         <th scope="row">1</th>
                         <td>{{ $trening->naziv }}</td>
-                        <td>{{ $trening->opis }}</td>
-                        <td>
-                            <img src="{{ $trening->slika }}" class="img-responsive" style="height: 50px;" alt="slika" />
-                        </td>
+                        <td class=".text-truncate" >{{ $trening->opis }}</td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
-                            <a class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
+                            <a href="{{ route('admin.treninzi.detalji', $trening->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
                             <a class="btn btn-outline-success btn-sm item">Edit</a>
                             <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
