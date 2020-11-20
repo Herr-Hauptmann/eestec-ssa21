@@ -28,13 +28,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 10; $i++) 
+                    @foreach($treninzi as $trening) 
                     <tr>
                         <th scope="row">1</th>
-                        <td>Time management</td>
-                        <td>Kako organizirati svoje vrijeme</td>
+                        <td>{{ $trening->naziv }}</td>
+                        <td>{{ $trening->opis }}</td>
                         <td>
-                            <img src="" class="img-responsive" style="height: 50px;" alt="slika" />
+                            <img src="{{ $trening->slika }}" class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
@@ -43,7 +43,7 @@
                             <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Trening;
 
 class TreningController extends Controller
 {
     public function getTreninzi()
     {
-        return view('admin.treninzi.lista');
+        $treninzi = Trening::all();
+        return view('admin.treninzi.lista', [
+            'treninzi' => $treninzi,
+        ]);
     }
 
     public function dodajTrening()
