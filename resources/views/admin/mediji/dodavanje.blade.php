@@ -24,9 +24,9 @@
                     <div class="form-group col-md-6">
                         <label for="medijiInputKategorije">Kategorija</label>
                         <select id="medijiInputKategorije" class="form-control">
-                            <option selected>Kategorija 1</option>
-                            <option>Kategorija 2</option>
-                            <option>Kategorija 3</option>
+                            @foreach($kategorije as $kategorija)
+                                <option value="{{$kategorija}}">{{$kategorija->naziv}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-6 mt-3">

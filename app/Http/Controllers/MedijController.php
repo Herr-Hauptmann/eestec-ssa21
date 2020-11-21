@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Medij;
+use App\Models\Kategorija;
 
 class MedijController extends Controller
 {
     public function getMediji()
     {
-        return view('admin.mediji.lista');
+        $mediji = Medij::all();
+        $data = [
+            "mediji" => $mediji
+        ];
+        return view('admin.mediji.lista', $data);
     }
 
     public function dodajMedij()
     {
-        return view('admin.mediji.dodavanje');
+        $kategorije = Kategorija::all();
+        $data = [
+            "kategorije" => $kategorije
+        ];
+        return view('admin.mediji.dodavanje', $data);
     }
 
     public function spasiMedij()

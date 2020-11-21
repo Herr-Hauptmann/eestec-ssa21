@@ -25,15 +25,15 @@
                         <th scope="col">Naziv</th>
                         <th scope="col">Kategorija</th>
                         <th scope="col">Link</th>
-                        <th scope="col">Slika</th>
+                        <th scope="col">Slika{{count($mediji)}}</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 10; $i++) 
+                    @foreach ($mediji as $medij)
                     <tr>
                         <th scope="row">1</th>
-                        <td>Klix</td>
+                        <td>{{$medij->naziv}}</td>
                         <td>Generalni</td>
                         <td>www---</td>
                         <td>
@@ -46,7 +46,7 @@
                             <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
