@@ -20,10 +20,26 @@ class TreningController extends Controller
         return view('admin.treninzi.dodavanje');
     }
 
-    public function spasiTrening()
+    public function spasiTrening(Request $req)
     {
-        //ovdje treba implementirati da se pokupljeni podaci iz forme spase u bazu
-        return view('admin.treninzi.lista');
+        $slika = $req->file('slika');
+        
+        $validatedData = $req->validate([
+            'naziv' => ['required', 'max:255'],
+            'opis' => ['required', 'max:255'],
+            'slika' => ['required'],
+        ]);
+
+        // [..., 'image'] za validaciju da je file slika...
+
+        $trening = new Trening();
+        $trening->naziv = $req->input('naziv');
+        $trening->opis = $req->input('opis');
+        $trening->slika = "https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png";
+
+        $trening->saveOrFail();
+
+        return redirect()->route('admin.treninzi');
     }
 
     public function showTrening($id)
