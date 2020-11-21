@@ -7,9 +7,16 @@ use App\Models\Trening;
 
 class TreningController extends Controller
 {
-    public function getTreninzi()
+    public function getTreninzi(Request $req)
     {
-        $treninzi = Trening::all();
+        $search = $req->input('search');
+
+        if(isset($search)) {
+            $treninzi = Trening::where('naziv', 'LIKE', "%{$search}%")->get();
+        } else {
+            $treninzi = Trening::all();
+        }
+
         return view('admin.treninzi.lista', [
             'treninzi' => $treninzi,
         ]);

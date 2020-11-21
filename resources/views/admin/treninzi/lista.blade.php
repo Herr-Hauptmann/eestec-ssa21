@@ -12,8 +12,8 @@
             </div>
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.treninzi.dodavanje') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novi trening</a>
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form method="get" action="{{ route('admin.treninzi') }}" class="form-inline ml-auto mt-2 mt-lg-0">
+                    <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach($treninzi as $trening) 
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ $loop->index + 1 }}</th>
                         <td>{{ $trening->naziv }}</td>
                         <td class=".text-truncate" >{{ $trening->opis }}</td>
                         <td>
@@ -42,6 +42,9 @@
                     @endforeach
                 </tbody>
             </table>
+            @if($treninzi->isEmpty())
+                <div>No results found!</div>
+            @endif
         </div>
     </div>
 </div>
