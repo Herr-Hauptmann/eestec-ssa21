@@ -36,7 +36,7 @@
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a href="{{ route('admin.treninzi.detalji', $trening->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
                             <a class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
+                            <a href="#myModal" data-href="{{ route('admin.treninzi.obrisi', $trening->id) }}" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>
                     @endforeach
@@ -45,5 +45,15 @@
         </div>
     </div>
 </div>
-@include('admin.brisanje')
+@include('admin.treninzi.brisanje')
+<script>
+
+window.onload = () => {
+    $('#myModal').on('show.bs.modal', e => {
+        const link = $(e.relatedTarget).data('href');
+        $('#myModal').attr('action', link);
+    });
+}
+
+</script>
 @endsection

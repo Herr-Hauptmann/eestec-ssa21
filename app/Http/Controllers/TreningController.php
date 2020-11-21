@@ -33,4 +33,11 @@ class TreningController extends Controller
             'trening' => $trening,
         ]);
     }
+
+    public function obrisiTrening($id)
+    {
+        $trening = Trening::findOrFail($id);
+        $trening->delete();
+        return redirect()->route('admin.treninzi');
+    }
 }
