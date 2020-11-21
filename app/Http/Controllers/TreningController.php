@@ -56,4 +56,35 @@ class TreningController extends Controller
         $trening->delete();
         return redirect()->route('admin.treninzi');
     }
+
+    public function uredjivanje($id)
+    {
+        $trening = Trening::findOrFail($id);
+        return view('admin.treninzi.uredjivanje', [
+            'trening' => $trening,
+        ]);
+    }
+
+    public function spasiPromjene(Request $req, $id)
+    {
+        $trening = Trening::findOrFail($id);
+        
+        $slika = $req->file('slika');
+        
+        $validatedData = $req->validate([
+            'naziv' => ['max:255'],
+            'opis' => ['max:255'],
+            'slika' => [],
+        ]);
+
+        // [..., 'image'] za validaciju da je file slika...
+
+        $trening->naziv = $req->input('naziv');
+        $trening->opis = $req->input('opis');
+        $trening->slika = "https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png";
+
+        $trening->saveOrFail();
+
+        return redirect()->route('admin.treninzi');
+    }
 }

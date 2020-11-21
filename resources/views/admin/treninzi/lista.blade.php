@@ -35,7 +35,7 @@
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a href="{{ route('admin.treninzi.detalji', $trening->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                            <a class="btn btn-outline-success btn-sm item">Edit</a>
+                            <a href="{{ route('admin.treninzi.uredjivanje', $trening->id) }}" class="btn btn-outline-success btn-sm item">Edit</a>
                             <a href="#myModal" data-href="{{ route('admin.treninzi.obrisi', $trening->id) }}" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>

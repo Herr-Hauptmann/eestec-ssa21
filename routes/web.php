@@ -63,6 +63,8 @@ Route::get('/admin/treninzi', [TreningController::class, 'getTreninzi'])->name('
 Route::get('/admin/treninzi/dodavanje', [TreningController::class, 'dodajTrening'])->name('admin.treninzi.dodavanje');
 Route::post('/admin/treninzi', [TreningController::class, 'spasiTrening'])->name('admin.treninzi.spasavanje');
 Route::delete('/admin/treninzi/{id}', [TreningController::class, 'obrisiTrening'])->name('admin.treninzi.obrisi');
+Route::get('/admin/treninzi/uredjivanje/{id}', [TreningController::class, 'uredjivanje'])->name('admin.treninzi.uredjivanje');
+Route::post('/admin/treninzi/uredjivanje/{id}', [TreningController::class, 'spasiPromjene'])->name('admin.treninzi.azuriranje');
 Route::get('/admin/treninzi/{id}', [TreningController::class, 'showTrening'])->name('admin.treninzi.detalji');
 
 /* Rute za pregled liste medija, dodavanje medija, pregled, uređivanje i brisanje kategorije*/
