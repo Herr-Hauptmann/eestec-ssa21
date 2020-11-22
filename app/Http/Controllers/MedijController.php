@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medij;
-use App\Models\Kategorija;
 
 class MedijController extends Controller
 {
@@ -19,16 +18,22 @@ class MedijController extends Controller
 
     public function dodajMedij()
     {
-        $kategorije = Kategorija::all();
-        $data = [
-            "kategorije" => $kategorije
-        ];
-        return view('admin.mediji.dodavanje', $data);
+        return view('admin.mediji.dodavanje');
     }
 
-    public function spasiMedij()
+    public function spasiMedij(Request $request)
     {
-        //ovdje treba implementirati da se pokupljeni podaci iz forme spase u bazu
-        return view('admin.mediji.lista');
+        $imageUrl = "https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png";
+        $item = new Medij();
+        $item->naziv = $request->input("naziv");
+        $item->link = $request->input('link');
+        $item->slika = $imageUrl; // $request->file('slika');
+        $item->saveOrFail();
+
+        $mediji = Medij::all();
+        $data = [
+            "mediji" => $mediji
+        ];
+        return view('admin.mediji.lista', $data);
     }
 }
