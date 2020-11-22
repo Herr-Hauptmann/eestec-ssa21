@@ -23,9 +23,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
-                        <th scope="col">Kategorija</th>
                         <th scope="col">Link</th>
-                        <th scope="col">Slika{{count($mediji)}}</th>
+                        <th scope="col">Slika</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -34,10 +33,9 @@
                     <tr>
                         <th scope="row">1</th>
                         <td>{{$medij->naziv}}</td>
-                        <td>Generalni</td>
-                        <td>www---</td>
+                        <td>{{$medij->link}}</td>
                         <td>
-                            <img src="" class="img-responsive" style="height: 50px;" alt="slika" />
+                            <img src="{{$medij->slika}}" class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
