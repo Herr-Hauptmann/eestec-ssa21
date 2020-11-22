@@ -16,6 +16,14 @@ class MedijController extends Controller
         return view('admin.mediji.lista', $data);
     }
 
+    public function showMedij($id) {
+        $medij = Medij::findOrFail($id);
+        $data = [
+            "medij" => $medij
+        ];
+        return view('admin.mediji.detalji', $data);
+    }
+
     public function dodajMedij()
     {
         return view('admin.mediji.dodavanje');

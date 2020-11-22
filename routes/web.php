@@ -70,6 +70,7 @@ Route::post('/admin/kategorije', [KategorijaController::class, 'spasiKategoriju'
 
 /* Rute za pregled liste medija, dodavanje medija, pregled, uređivanje i brisanje medija*/
 Route::get('/admin/mediji', [MedijController::class, 'getMediji'])->name('admin.mediji');
+Route::get('/admin/mediji/detalji/{id}', [MedijController::class, 'showMedij'])->name('admin.mediji.detalji');
 Route::get('/admin/mediji/dodavanje', [MedijController::class, 'dodajMedij'])->name('admin.mediji.dodavanje');
 Route::post('/admin/mediji', [MedijController::class, 'spasiMedij'])->name('admin.mediji.spasavanje');
 
