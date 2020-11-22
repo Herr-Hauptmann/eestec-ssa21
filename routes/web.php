@@ -70,9 +70,13 @@ Route::post('/admin/kategorije', [KategorijaController::class, 'spasiKategoriju'
 
 /* Rute za pregled liste medija, dodavanje medija, pregled, uređivanje i brisanje medija*/
 Route::get('/admin/mediji', [MedijController::class, 'getMediji'])->name('admin.mediji');
-Route::get('/admin/mediji/detalji/{id}', [MedijController::class, 'showMedij'])->name('admin.mediji.detalji');
 Route::get('/admin/mediji/dodavanje', [MedijController::class, 'dodajMedij'])->name('admin.mediji.dodavanje');
 Route::post('/admin/mediji', [MedijController::class, 'spasiMedij'])->name('admin.mediji.spasavanje');
+Route::get('/admin/mediji/uredjivanje/{id}', [MedijController::class, 'uredjivanje'])->name('admin.mediji.uredjivanje');
+Route::post('/admin/mediji/uredjivanje/{id}', [MedijController::class, 'spasiPromjene'])->name('admin.mediji.azuriranje');
+Route::delete('/admin/mediji/{id}', [MedijController::class, 'obrisiMedij'])->name('admin.mediji.obrisi');
+Route::get('/admin/mediji/{id}', [MedijController::class, 'showMedij'])->name('admin.mediji.detalji');
+
 
 /* Rute za pregled liste partnera, dodavanje partnera, pregled, uređivanje i brisanje partnera*/
 Route::get('/admin/partneri', [PartnerController::class, 'getPartneri'])->name('admin.partneri');

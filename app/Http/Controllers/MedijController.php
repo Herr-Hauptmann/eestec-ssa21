@@ -24,6 +24,42 @@ class MedijController extends Controller
         return view('admin.mediji.detalji', $data);
     }
 
+    public function obrisiMedij($id) {
+        $medij = Medij::findOrFail($id);
+        $medij->delete();
+        return redirect()->route('admin.mediji');
+
+    }
+
+    public function uredjivanje($id)
+    {
+        $medij = Medij::findOrFail($id);
+        return view('admin.mediji.uredjivanje', [
+            'medij' => $medij,
+        ]);
+    }
+
+    public function spasiPromjene(Request $req, $id)
+    {
+        $medij = Medij::findOrFail($id);
+
+        $slika = $req->file('slika');
+
+        $validatedData = $req->validate([
+            'naziv' => ['max:255'],
+            'opis' => ['max:255'],
+            'slika' => [],
+        ]);
+
+        $medij->naziv = $req->input('naziv');
+        $medij->link = $req->input('link');
+        $medij->slika = "https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png";
+
+        $medij->saveOrFail();
+
+        return redirect()->route('admin.mediji');
+    }
+
     public function dodajMedij()
     {
         return view('admin.mediji.dodavanje');
