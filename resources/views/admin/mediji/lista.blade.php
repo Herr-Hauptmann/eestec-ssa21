@@ -31,7 +31,7 @@
                 <tbody>
                     @foreach ($mediji as $medij)
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{$loop->index+1}}</th>
                         <td>{{$medij->naziv}}</td>
                         <td>{{$medij->link}}</td>
                         <td>
@@ -41,7 +41,7 @@
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a href="{{ route('admin.mediji.detalji', $medij->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
                             <a href="{{ route('admin.mediji.uredjivanje', $medij->id) }}" class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
+                            <a href="#myModal" data-href="{{ route('admin.mediji.obrisi', $medij->id) }}" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>
                     @endforeach
@@ -50,5 +50,13 @@
         </div>
     </div>
 </div>
-@include('admin.brisanje')
+@include('admin.mediji.brisanje')
+<script>
+    window.onload = () => {
+        $('#myModal').on('show.bs.modal', e => {
+            const link = $(e.relatedTarget).data('href');
+            $('#myModal').attr('action', link);
+        });
+    }
+</script>
 @endsection
