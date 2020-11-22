@@ -13,8 +13,8 @@
             </div>
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.mediji.dodavanje') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novi medij</a>
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline ml-auto mt-2 mt-lg-0" method="GET" action="{{route('admin.mediji')}}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -47,6 +47,10 @@
                     @endforeach
                 </tbody>
             </table>
+            @if($mediji->isEmpty())
+                <div>No results found!</div>
+            @endif
+
         </div>
     </div>
 </div>

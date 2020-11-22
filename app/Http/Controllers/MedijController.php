@@ -7,13 +7,19 @@ use App\Models\Medij;
 
 class MedijController extends Controller
 {
-    public function getMediji()
+    public function getMediji(Request $request)
     {
-        $mediji = Medij::all();
-        $data = [
-            "mediji" => $mediji
-        ];
-        return view('admin.mediji.lista', $data);
+        $search = $request->input("search");
+        if(isset($search)) {
+            $mediji = Medij::where('naziv', 'LIKE', "%{$search}%")->get();
+        } else {
+            $mediji = Medij::all();
+        }
+
+        return view('admin.mediji.lista', [
+            'mediji' => $mediji,
+        ]);
+
     }
 
     public function showMedij($id) {
