@@ -11,13 +11,15 @@ class Partner extends Model
 
     protected $fillable = ['naziv', 'slika', 'link'];
 
-    public function edicije()
+    public function edicija()
     {
-        return $this->belongsToMany('App\Models\Edicija', 'edicija_partner_kategorija');
+        return $this->belongsTo('App\Models\Edicija');
     }
 
-    public function kategorije()
+    public function kategorija()
     {
-        return $this->belongsToMany('App\Models\Kategorija', 'edicija_partner_kategorija');
+        return $this->belongsTo('App\Models\Kategorija');
     }
+
+    use HasFactory;
 }

@@ -12,7 +12,7 @@
                 <p>Partneri</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.partneri.dodavanje') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog partnera</a>
+                <a href="{{ route('partneri.create') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog partnera</a>
                 <form class="form-inline ml-auto mt-2 mt-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -30,14 +30,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 10; $i++) 
+                    @foreach ($partneri as $partner)
                     <tr>
                         <th scope="row">1</th>
-                        <td>Podravka</td>
-                        <td>Generalni</td>
-                        <td>www---</td>
+                        <td>{{$partner->naziv}}</td>
+                        <td>{{$partner->kategorija->naziv}}</td>
+                        <td>{{$partner->link}}</td>
                         <td>
-                            <img src="" class="img-responsive" style="height: 50px;" alt="slika" />
+                            <img src={{$partner->slika}} class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
@@ -46,7 +46,7 @@
                             <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>

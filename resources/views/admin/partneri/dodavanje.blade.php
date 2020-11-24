@@ -12,9 +12,9 @@
                 <p>Dodavanje novog partnera</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.partneri') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na partnere</a>
+                <a href="{{ route('partneri.index') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na partnere</a>
             </div>
-            <form class="m-5 pl-5" action="{{ route('admin.partneri.spasavanje') }}" method="POST">
+            <form class="m-5 pl-5" action="{{ route('partneri.create') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-6">
