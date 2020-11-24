@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Partner;
 
 class PartnerController extends Controller
 {
@@ -14,7 +13,7 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partneri = Partner::all();
+        $partneri = \App\Models\Partner::all();
         return view('admin.partneri.lista', compact('partneri'));
     }
 
@@ -25,7 +24,10 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        $kategorije = \App\Models\Kategorija::all();
+        $edicije = \App\Models\Edicija::all();
+
+        return view('admin.partneri.dodavanje', compact('kategorije', 'edicije'));
     }
 
     /**
@@ -36,7 +38,16 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dodati validaciju ovdje
+        $partner = new \App\Models\Partner;
+        $partner->naziv = $request->naziv;
+        $partner->link = $request->link;
+        $partner->kategorija_id = $request->kategorija_id;
+        $partner->slika = "";
+
+        $partner->save();
+
+        return redirect('admin/partneri')->with('flash_message', 'Uspjesno ste dodali novog organizatora!');
     }
 
     /**

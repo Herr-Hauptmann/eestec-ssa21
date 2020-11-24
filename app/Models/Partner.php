@@ -9,7 +9,7 @@ class Partner extends Model
 {
     protected $table = 'partner';
 
-    protected $fillable = ['naziv', 'slika', 'link'];
+    protected $fillable = ['naziv', 'slika', 'link', 'kategorija_id'];
 
     public function edicija()
     {
