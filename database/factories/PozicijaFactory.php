@@ -22,7 +22,8 @@ class PozicijaFactory extends Factory
     public function definition()
     {
         return [
-            'naziv' => $this->faker->title
+            'naziv' => $this->faker->title,
+            'opis' => $this->faker->bs
         ];
     }
 }
