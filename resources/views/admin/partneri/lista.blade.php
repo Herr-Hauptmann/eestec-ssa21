@@ -12,41 +12,49 @@
                 <p>Partneri</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.partneri.dodavanje') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog partnera</a>
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <a href="{{ route('partneri.create') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog partnera</a>
+            <form class="form-inline ml-auto mt-2 mt-lg-0" type="GET" action="{{ url('/partneri/search')}}">
+                <input class="form-control mr-sm-2" type="search" name="partner_search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             </div>
             <table class="table teble-responsive table-hover mt-5">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
-                        <th scope="col">Kategorija</th>
-                        <th scope="col">Link</th>
                         <th scope="col">Slika</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 10; $i++) 
+                    @php
+                        $brojac = 1;
+                    @endphp
+                    @foreach ($partneri as $partner)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Podravka</td>
-                        <td>Generalni</td>
-                        <td>www---</td>
+                        <td scope="row">{{$brojac}}</td>
+                        <td>{{$partner->naziv}}</td>
                         <td>
-                            <img src="" class="img-responsive" style="height: 50px;" alt="slika" />
+                            <img src="/storage/logos/{{$partner->slika}}" class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
-                            <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
-                            <a class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                            <a class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
+                            <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-info btn-sm item">View</a>
+                            <a href="partneri/{{$partner->id}}/edit" class="btn btn-success btn-sm item">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('partneri.destroy', $partner) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                            <button type="submit" onclick="return confirm('Da li si siguran da zelis izbrisati {{$partner->naziv}}?')" class="btn btn-danger btn-sm item">Delete</button>
+                            </form>
                         </td>
                         </tr>
-                    @endfor
+                        @php
+                            $brojac= $brojac +1;
+                        @endphp
+                    @endforeach
                 </tbody>
             </table>
         </div>

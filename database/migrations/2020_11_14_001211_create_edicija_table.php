@@ -17,7 +17,7 @@ class CreateEdicijaTable extends Migration
             $table->id();
             $table->string('naziv');
             $table->date('datum_odrzavanja');
-            $table->date('mjesto_odrzavanja');
+            $table->string('mjesto_odrzavanja');
             $table->date('datum_otvaranja_prijava');
             $table->date('datum_zatvaranja_prijava');
             $table->integer('broj_ucesnika');
