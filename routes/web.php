@@ -47,9 +47,8 @@ Route::post('/admin/edicije', [EdicijaController::class, 'spasiEdiciju'])->name(
 Route::Resource('/admin/organizatori', OrganizatorController::class);
 
 /* Rute za pregled liste uloga, dodavanje uloge, pregled, uređivanje i brisanje uloga*/
-Route::get('/admin/pozicije', [PozicijaController::class, 'getPozicije'])->name('admin.pozicije');
-Route::get('/admin/pozicije/dodavanje', [PozicijaController::class, 'dodajPoziciju'])->name('admin.pozicije.dodavanje');
-Route::post('/admin/pozicije', [PozicijaController::class, 'spasiPoziciju'])->name('admin.pozicije.spasavanje');
+Route::resource('/admin/pozicije', PozicijaController::class);
+Route::get('/pozicije/search', [PozicijaController::class, 'search'])->name('admin.pozicije.search');
 
 /* Rute za pregled liste trenera, dodavanje trenera, pregled, uređivanje i brisanje trenera*/
 Route::get('/admin/treneri', [TrenerController::class, 'getTreneri'])->name('admin.treneri');
@@ -72,9 +71,8 @@ Route::get('/admin/mediji/dodavanje', [MedijController::class, 'dodajMedij'])->n
 Route::post('/admin/mediji', [MedijController::class, 'spasiMedij'])->name('admin.mediji.spasavanje');
 
 /* Rute za pregled liste partnera, dodavanje partnera, pregled, uređivanje i brisanje partnera*/
-Route::get('/admin/partneri', [PartnerController::class, 'getPartneri'])->name('admin.partneri');
-Route::get('/admin/partneri/dodavanje', [PartnerController::class, 'dodajPartnera'])->name('admin.partneri.dodavanje');
-Route::post('/admin/partneri', [PartnerController::class, 'spasiPartnera'])->name('admin.partneri.spasavanje');
+Route::resource('admin/partneri', PartnerController::class);
+Route::get('/partneri/search', [PartnerController::class, 'search'])->name('admin.partneri.search');
 
 /* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti*/
 Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
@@ -98,3 +96,7 @@ Route::post('/admin/prijave', [PrijavaUcesnikaController::class, 'spasiBodovanje
 
 /* Ruta za pregled rang liste*/
 Route::get('/admin/rang', [PrijavaUcesnikaController::class, 'getRang'])->name('admin.rang');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
