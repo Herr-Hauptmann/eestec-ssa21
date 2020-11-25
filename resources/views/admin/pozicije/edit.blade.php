@@ -24,16 +24,18 @@
                 </div>
             @endif
 
-            <form class="m-5" action="{{ route('pozicije.store') }}" method="POST"  enctype="multipart/form-data">
-                {{ csrf_field() }}
+            <form class="m-5 pl-5" action="/admin/pozicije/{{ $pozicija->id }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="pozicijaNaziv">Naziv</label>
-                        <input type="text" class="form-control" id="pozicijaNaziv" name="naziv" placeholder="Naziv">
+                    <input type="text" value={{$pozicija->naziv}} class="form-control" id="pozicijaNaziv" name="naziv" placeholder="Naziv">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="pozicijaOpis">Opis</label>
-                        <textarea class="form-control" id="pozicijaOpis" rows="3" name="opis"></textarea>
+                        <textarea class="form-control" id="pozicijaOpis" rows="3" name="opis">{{$pozicija->opis}}</textarea>
                     </div>
 
                 </div>

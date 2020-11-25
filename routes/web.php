@@ -49,9 +49,8 @@ Route::get('/admin/organizatori/dodavanje', [OrganizatorController::class, 'doda
 Route::post('/admin/organizatori', [OrganizatorController::class, 'spasiOrganizatora'])->name('admin.organizatori.spasavanje');
 
 /* Rute za pregled liste uloga, dodavanje uloge, pregled, uređivanje i brisanje uloga*/
-Route::get('/admin/pozicije', [PozicijaController::class, 'getPozicije'])->name('admin.pozicije');
-Route::get('/admin/pozicije/dodavanje', [PozicijaController::class, 'dodajPoziciju'])->name('admin.pozicije.dodavanje');
-Route::post('/admin/pozicije', [PozicijaController::class, 'spasiPoziciju'])->name('admin.pozicije.spasavanje');
+Route::resource('/admin/pozicije', PozicijaController::class);
+Route::get('/pozicije/search', [PozicijaController::class, 'search'])->name('admin.pozicije.search');
 
 /* Rute za pregled liste trenera, dodavanje trenera, pregled, uređivanje i brisanje trenera*/
 Route::get('/admin/treneri', [TrenerController::class, 'getTreneri'])->name('admin.treneri');
