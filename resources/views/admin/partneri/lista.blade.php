@@ -43,7 +43,11 @@
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
                             <a href="partneri/{{$partner->id}}/edit" class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
+                            <form action="{{ route('partneri.destroy', $partner) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger btn-sm item">Delete</button>
+                            </form>
                         </td>
                         </tr>
                     @endforeach

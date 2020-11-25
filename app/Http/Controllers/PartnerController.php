@@ -47,7 +47,7 @@ class PartnerController extends Controller
 
         $partner->save();
 
-        return redirect('admin/partneri')->with('flash_message', 'Uspjesno ste dodali novog organizatora!');
+        return redirect('admin/partneri')->with('flash_message', 'Uspjesno ste dodali novog partnera!');
     }
 
     /**
@@ -93,7 +93,7 @@ class PartnerController extends Controller
 
         $partner->save();
 
-        return redirect('admin/partneri')->with('flash_message', 'Uspjesno ste azurirali novog organizatora!');
+        return redirect('admin/partneri')->with('flash_message', 'Uspjesno ste azurirali partnera!');
     }
 
     /**
@@ -104,6 +104,10 @@ class PartnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $partner = \App\Models\Partner::find($id);
+        // dodati brisanje slike
+        $partner->delete();
+        // return redirect('/admin/partneri')->with('flash_message', 'Uspjesno ste izbrisali partnera!');
+        return back();
     }
 }
