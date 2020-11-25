@@ -19,8 +19,10 @@ class CreatePartnerTable extends Migration
             $table->string('link');
             $table->string('slika');
             $table->unsignedBigInteger('kategorija_id');
+            $table->unsignedBigInteger('edicija_id');
             $table->timestamps();
             $table->foreign("kategorija_id")->references('id')->on('kategorija');
+            $table->foreign("edicija_id")->references('id')->on('edicija');
         });
     }
 

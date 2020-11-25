@@ -43,6 +43,7 @@ class PartnerController extends Controller
         $partner->naziv = $request->naziv;
         $partner->link = $request->link;
         $partner->kategorija_id = $request->kategorija_id;
+        $partner->edicija_id = $request->edicija_id;
         $partner->slika = "";
 
         $partner->save();
@@ -89,6 +90,7 @@ class PartnerController extends Controller
         $partner->naziv = $request->naziv;
         $partner->link = $request->link;
         $partner->kategorija_id = $request->kategorija_id;
+        $partner->edicija_id = $request->edicija_id;
         $partner->slika = "";
 
         $partner->save();

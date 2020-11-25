@@ -24,32 +24,38 @@
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Kategorija</th>
-                        <th scope="col">Link</th>
+                        <th scope="col">Edicija</th>
                         <th scope="col">Slika</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $brojac = 1;
+                    @endphp
                     @foreach ($partneri as $partner)
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{$brojac}}</th>
                         <td>{{$partner->naziv}}</td>
                         <td>{{$partner->kategorija->naziv}}</td>
-                        <td>{{$partner->link}}</td>
+                        <td>{{$partner->edicija->naziv}}</td>
                         <td>
                             <img src={{$partner->slika}} class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
-                            <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                            <a href="partneri/{{$partner->id}}/edit" class="btn btn-outline-success btn-sm item">Edit</a>
+                            <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-info btn-sm item">View</a>
+                            <a href="partneri/{{$partner->id}}/edit" class="btn btn-success btn-sm item">Edit</a>
                             <form action="{{ route('partneri.destroy', $partner) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger btn-sm item">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm item">Delete</button>
                             </form>
                         </td>
                         </tr>
+                        @php
+                            $brojac= $brojac +1;
+                        @endphp
                     @endforeach
                 </tbody>
             </table>
