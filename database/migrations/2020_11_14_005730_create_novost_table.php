@@ -17,7 +17,7 @@ class CreateNovostTable extends Migration
             $table->id();
             $table->string('naslov');
             $table->string('tekst');
-            $table->string('slika');
+            $table->string('slika')->default("nemaslike.jpg");
             $table->date('datum');
             $table->timestamps();
         });

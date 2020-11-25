@@ -79,9 +79,9 @@ Route::get('/admin/partneri/dodavanje', [PartnerController::class, 'dodajPartner
 Route::post('/admin/partneri', [PartnerController::class, 'spasiPartnera'])->name('admin.partneri.spasavanje');
 
 /* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti*/
-Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
+/*Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
 Route::get('/admin/novosti/dodavanje', [NovostController::class, 'dodajNovost'])->name('admin.novosti.dodavanje');
-Route::post('/admin/novosti', [NovostController::class, 'spasiNovost'])->name('admin.novosti.spasavanje');
+Route::post('/admin/novosti', [NovostController::class, 'spasiNovost'])->name('admin.novosti.spasavanje');*/
 
 /* Rute za pregled liste izjave, dodavanje izjave, pregled, uređivanje i brisanje izjave*/
 Route::get('/admin/izjave', [IzjavaController::class, 'getIzjave'])->name('admin.izjave');
@@ -100,3 +100,6 @@ Route::post('/admin/prijave', [PrijavaUcesnikaController::class, 'spasiBodovanje
 
 /* Ruta za pregled rang liste*/
 Route::get('/admin/rang', [PrijavaUcesnikaController::class, 'getRang'])->name('admin.rang');
+
+/* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti */
+Route::Resource('/admin/novosti', NovostController::class);
