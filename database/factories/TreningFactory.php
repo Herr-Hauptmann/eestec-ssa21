@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Pozicija;
+use App\Models\Trening;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PozicijaFactory extends Factory
+class TreningFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Pozicija::class;
+    protected $model = Trening::class;
 
     /**
      * Define the model's default state.
@@ -21,11 +21,10 @@ class PozicijaFactory extends Factory
      */
     public function definition()
     {
-        $pozicije = ['Glavni organizator', 'FR', 'PR', 'HR', 'IT'];
-
         return [
-            'naziv' => $pozicije[rand(0, count(array($pozicije)) - 1)],
-            'opis'  => $this->faker->text
+            'naziv' => $this->faker->name,
+            'opis' => $this->faker->text,
+            'slika' => $this->faker->imageUrl
         ];
     }
 }

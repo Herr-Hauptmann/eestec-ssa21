@@ -18,37 +18,39 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <table class="table teble-responsive table-hover mt-5">
+            <div class="d-flex flex-fill justify-content-center"> {{ $editions->appends(['search' => Request::get('search')])->links() }} </div>
+            <table class="table teble-responsive table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
-                        <th scope="col">Datum</th>
-                        <th scope="col"></th>
+                        <th scope="col">Datum početka</th>
+                        <th scope="col">Akcije</th>
                     </tr>
                 </thead>
+                {{ $editions }}
                 @if (!$editions->isEmpty())
                 <tbody>      
-                        @for ($i = 0; $i < 10; $i++) 
+                        @foreach ($editions as $edition)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>SSA LITE</td>
-                                <td>22.12.2020</td>
+                                <th scope="row">{{ $loop->iteration + $editions->perPage() * ($editions->currentPage() - 1) }}</th>
+                                <td>{{ $edition->naziv }}</td>
+                                <td>{{ $edition->datum_pocetka }}</td>
                                 <td>   
                                     <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
-                                    <a class="btn-kontrole btn btn-outline-info btn-sm item" href="{{ route('admin.edition.show', $i) }}">View</a>
-                                    <a class="btn btn-outline-success btn-sm item" href="{{ route('admin.edition.edit', $i) }}">Edit</a>
-                                    <a href="#myModal" data-toggle="modal" data-route="{{ route('admin.edition.destroy', $i) }}" class="btn btn-outline-danger btn-sm item">Delete</a>
+                                    <a class="btn-kontrole btn btn-outline-info btn-sm item" href="{{ route('admin.edition.show', $edition->id) }}">View</a>
+                                    <a class="btn btn-outline-success btn-sm item" href="{{ route('admin.edition.edit', $edition->id) }}">Edit</a>
+                                    <a href="#myModal" data-toggle="modal" data-route="{{ route('admin.edition.destroy', $edition->id) }}" class="btn btn-outline-danger btn-sm item">Delete</a>
                                 </td>
-                            </tr>                  
-                        @endfor                    
+                            </tr>       
+                        @endforeach
+                  
                 </tbody>
                 @endif
             </table>
             @if ($editions->isEmpty())   
                 <h3>Nema rezultata</h3>
             @endif
-            {{-- <div class="pagination-wrapper"> {!! $editions->appends(['search' => Request::get('search')])->render() !!} </div> --}}
         </div>
     </div>
 </div>

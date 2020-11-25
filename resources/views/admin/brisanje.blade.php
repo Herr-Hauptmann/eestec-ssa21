@@ -23,7 +23,7 @@
 				</div>
 				<div id="myModalButtons" class="modal-footer justify-content-center">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger">Delete</button>
+					<button type="submit" class="btn btn-danger">Delete</button>
 				</div>
 			</form>
 		</div>

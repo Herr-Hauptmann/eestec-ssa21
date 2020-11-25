@@ -35,7 +35,7 @@ Route::get('/registracija', [PrijavaRegistracijaController::class, 'registracija
 
 
 Route::get('/admin', [EdicijaController::class, 'index'])->name('admin');
-Route::post('/admin', [EdicijaController::class, 'index'])->name('admin');
+// Route::post('/admin', [EdicijaController::class, 'index'])->name('admin');
 
 /* Rute za pregled liste edicija, dodavanje edicije, pregled, uređivanje i brisanje edicije*/
 Route::prefix('admin/edicije')->group(function() {

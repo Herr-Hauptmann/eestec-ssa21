@@ -16,7 +16,9 @@ class CreateEdicijaTable extends Migration
         Schema::create('edicija', function (Blueprint $table) {
             $table->id();
             $table->string('naziv');
-            $table->date('datum_odrzavanja');
+            $table->string('logo');
+            $table->date('datum_pocetka');
+            $table->date('datum_kraja');
             $table->string('mjesto_odrzavanja');
             $table->date('datum_otvaranja_prijava');
             $table->date('datum_zatvaranja_prijava');

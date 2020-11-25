@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Edicija;
+use App\Models\Medij;
 use Illuminate\Database\Seeder;
 
-class EditionSeeder extends Seeder
+class MedijSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,8 @@ class EditionSeeder extends Seeder
      */
     public function run()
     {
-        Edicija::factory()
-            ->times(50)
-            ->hasSlike(15)
+        Medij::factory()
+            ->times(40)
             ->create();
     }
 }

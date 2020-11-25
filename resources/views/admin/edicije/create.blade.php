@@ -1,5 +1,8 @@
 @extends('admin.admin_home')
 
+@section('scripts')
+    <script src="/js/admin/addRowDynamic.js"></script>
+@endsection
 
 @section('content')
 <div class="container-fluid pt-5 pl-5 izbornik">
@@ -12,58 +15,60 @@
                 <p>Dodavanje nove edicije</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.edicije') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na edicije</a>
+                <a href="{{ route('admin.editions') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na edicije</a>
             </div>
-            <form class="m-5" action="{{ route('admin.edicije.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.edition.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label for="edicijaInputNaziv">Naziv</label>
-                        <input type="text" class="form-control" id="edicijaInputNaziv" placeholder="Naziv">
+                        <input type="text" class="form-control" id="edicijaInputNaziv" placeholder="Naziv" name="naziv">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="edicija-vrsta">Vrsta edicije</label>
                         </br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="edicijeRadios1" id="edicijeRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                SSA
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="edicijeRadios2" id="edicijeRadios2" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                SSA LITE
-                            </label>
-                        </div>
+                        <fieldset id="ssaTip">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ssaTip" id="edicijeRadios1" value="SSA" checked>
+                                <label class="form-check-label" for="edicijeRadios1">
+                                    SSA
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="ssaTip" id="edicijeRadios2" value="SSA LITE">
+                                <label class="form-check-label" for="edicijeRadios2">
+                                    SSA LITE
+                                </label>
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="edicijeInputBrojUcesnika">Broj učesnika</label>
-                        <select id="edicijeInputBrojUcesnika" class="form-control">
-                            <option selected>20</option>
-                            <option>30</option>
-                            <option>40</option>
-                            <option>50</option>
-                            <option>60</option>
-                            <option>70</option>
-                        </select>
+                        <input type="number" class="form-control" id="edicijeInputBrojUcesnika" placeholder="30" name="broj_ucesnika" min="0" max="200">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="datumOdrzavanja">Datum održavanja</label>
-                        <input type="text" class="form-control" id="datumOdrzavanja" placeholder="dd.mm.gggg">
+                        <label for="datumPocetka">Datum početka</label>
+                        <input type="date" class="form-control" id="datumPocetka" placeholder="dd.mm.gggg" name="datum_pocetka">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="datumKraja">Datum kraja</label>
+                        <input type="date" class="form-control" id="datumKraja" placeholder="dd.mm.gggg" name="datum_kraja">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="mjestoOdrzavanja">Mjesto održavanja</label>
-                        <input type="text" class="form-control" id="mjestoOdrzavanja" placeholder="Mjesto održavanja">
+                        <input type="text" class="form-control" id="mjestoOdrzavanja" placeholder="Mjesto održavanja" name="mjesto_odrzavanja">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="datumOtvaranja">Datum otvaranja prijava</label>
-                        <input type="text" class="form-control" id="datumOtvaranja" placeholder="dd.mm.gggg">
+                    <div class="row col-12">
+                        <div class="form-group col-md-6">
+                            <label for="datumOtvaranja">Datum otvaranja prijava</label>
+                            <input type="date" class="form-control" id="datumOtvaranja" placeholder="dd.mm.gggg" name="datum_otvaranja_prijava">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="datumZatvaranja">Datum zatvaranja prijava</label>
+                            <input type="date" class="form-control" id="datumZatvaranja" placeholder="dd.mm.gggg" name="datum_zatvaranja_prijava">
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="datumZatvaranja">Datum zatvaranja prijava</label>
-                        <input type="text" class="form-control" id="datumZatvaranja" placeholder="dd.mm.gggg">
-                    </div>
+                    
 
                     <table id="edicijeTabelaOrganizatorPozicija" class="table teble-responsive mt-5">
                         <thead>
@@ -76,19 +81,23 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select id="edicijeInputOrganizatori" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputOrganizatori" class="form-control" name="organizator_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($organizers as $organizer)
+                                            <option value="{{ $organizer->id }}">{{ $organizer->ime.' '.$organizer->prezime }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="edicijeInputPozicije" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputPozicije" class="form-control" name="pozicija_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($positions as $position)
+                                            <option value="{{ $position->id }}">{{ $position->naziv }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary btn-sm" id="edicijeAddRowOrganizatori" value="Add Row" />
+                                    <input type="button" class="btn btn-primary btn-sm" data-addrow id="edicijeAddRowOrganizatori" value="Add Row" />
                                 </td>
                             </tr>
                         </tbody>
@@ -105,19 +114,23 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select id="edicijeInputTreneri" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputTreneri" class="form-control"name="trener_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($trainers as $trainer)
+                                            <option value="{{ $trainer->id }}">{{ $trainer->ime.' '.$trainer->prezime }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="edicijeInputTreninzi" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputTreninzi" class="form-control" name="trening_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($trainings as $training)
+                                            <option value="{{ $training->id }}">{{ $training->naziv }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary btn-sm" id="edicijeAddRowTreneri" value="Add Row" />
+                                    <input type="button" class="btn btn-primary btn-sm" data-addrow id="edicijeAddRowTreneri" value="Add Row" />
                                 </td>
                             </tr>
                         </tbody>
@@ -134,19 +147,23 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select id="edicjeInputPartneri" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicjeInputPartneri" class="form-control"  name="partner_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($partners as $partner)
+                                            <option value="{{ $partner->id }}">{{ $partner->naziv }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="edicijeInputKategorije" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputKategorijePartner" class="form-control" name="partner_kategorija_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->naziv }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary btn-sm" id="edicijeAddRowPartneri" value="Add Row" />
+                                    <input type="button" class="btn btn-primary btn-sm" data-addrow id="edicijeAddRowPartneri" value="Add Row" />
                                 </td>
                             </tr>
                         </tbody>
@@ -163,19 +180,23 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select id="edicijeInputMediji" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputMediji" class="form-control" name="medij_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($mediums as $medium)
+                                            <option value="{{ $medium->id }}">{{ $medium->naziv }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <select id="edicijeInputKategorije" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
+                                    <select id="edicijeInputKategorijeMediji" class="form-control" name="medij_kategorija_id[]">
+                                        <option value="NULL" selected>Izaberi...</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->naziv }}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="button" class="btn btn-primary btn-sm" id="edicijeAddRowMediji" value="Add Row" />
+                                    <input type="button" class="btn btn-primary btn-sm" data-addrow id="edicijeAddRowMediji" value="Add Row" />
                                 </td>
                             </tr>
                         </tbody>
@@ -192,12 +213,12 @@
                             <tr>
                                 <td>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="edicijeSlika">
-                                        <label class="custom-file-label" for="edicijeSlika">Umetni sliku</label>
+                                        <input type="file" class="custom-file-input" id="edicijeSlika" name="slike_edicije[]">
+                                        <label class="custom-file-label" for="edicijeSlika">Dodaj sliku</label>
                                     </div>
                                 </td>
                                 <td class="pr-4">
-                                    <input type="button" class="btn btn-primary btn-sm" id="edicijeAddRowSlika" value="Add Row" />
+                                    <input type="button" class="btn btn-primary btn-sm" data-addrow id="edicijeAddRowSlika" value="Add Row" />
                                 </td>
                             </tr>
                         </tbody>
