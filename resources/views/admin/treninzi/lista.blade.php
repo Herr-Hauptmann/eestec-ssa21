@@ -12,42 +12,51 @@
             </div>
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.treninzi.dodavanje') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novi trening</a>
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form method="get" action="{{ route('admin.treninzi') }}" class="form-inline ml-auto mt-2 mt-lg-0">
+                    <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <table class="table teble-responsive table-hover mt-5">
+            <table class="table table-responsive table-hover mt-5">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Opis</th>
-                        <th scope="col">Slika</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 10; $i++) 
+                    @foreach($treninzi as $trening) 
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Time management</td>
-                        <td>Kako organizirati svoje vrijeme</td>
-                        <td>
-                            <img src="" class="img-responsive" style="height: 50px;" alt="slika" />
-                        </td>
+                        <th scope="row">{{ $loop->index + 1 }}</th>
+                        <td>{{ $trening->naziv }}</td>
+                        <td class=".text-truncate" >{{ $trening->opis }}</td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
-                            <a class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                            <a class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
+                            <a href="{{ route('admin.treninzi.detalji', $trening->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
+                            <a href="{{ route('admin.treninzi.uredjivanje', $trening->id) }}" class="btn btn-outline-success btn-sm item">Edit</a>
+                            <a href="#myModal" data-href="{{ route('admin.treninzi.obrisi', $trening->id) }}" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
                         </td>
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
+            @if($treninzi->isEmpty())
+                <div>No results found!</div>
+            @endif
         </div>
     </div>
 </div>
-@include('admin.brisanje')
+@include('admin.treninzi.brisanje')
+<script>
+
+window.onload = () => {
+    $('#myModal').on('show.bs.modal', e => {
+        const link = $(e.relatedTarget).data('href');
+        $('#myModal').attr('action', link);
+    });
+}
+
+</script>
 @endsection
