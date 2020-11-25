@@ -14,7 +14,7 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.izjave') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na izjave</a>
             </div>
-            <form class="m-5" action="{{ route('admin.izjave.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.izjave.azuriranje', $izjava->id) }}" method="POST">
                 {{ csrf_field() }}
                 @foreach($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
@@ -22,15 +22,15 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="ime-participanta">Ime</label>
-                        <input type="text" class="form-control" id="imeParticipanta" name="imeParticipanta" placeholder="Ime participanta">
+                        <input type="text" class="form-control" id="imeParticipanta" name="imeParticipanta"  value="{{$izjava->ime}}" placeholder="Ime participanta">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="prezime-participanta">Prezime</label>
-                        <input type="text" class="form-control" id="prezimeParticipanta" name="prezimeParticipanta" placeholder="Prezime participanta">
+                        <input type="text" class="form-control" id="prezimeParticipanta" name="prezimeParticipanta" value="{{$izjava->prezime}}" placeholder="Prezime participanta">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="pozicija-opis">Izjava</label>
-                        <textarea class="form-control" id="izjavaParticipanta" name="izjavaParticipanta" rows="3"></textarea>
+                        <textarea class="form-control" id="izjavaParticipanta" name="izjavaParticipanta" rows="3">{{$izjava->tekst}}</textarea>
                     </div>
                     <div class="custom-file col-md-12 mt-4">
                         <input type="file" class="custom-file-input" id="slikaParticipanta" name="slikaParticipanta">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5">Spasi izjavu</button>
+                <button type="submit" class="btn btn-primary mt-5">Spasi izmjene</button>
             </form>
         </div>
     </div>

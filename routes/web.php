@@ -87,6 +87,11 @@ Route::post('/admin/novosti', [NovostController::class, 'spasiNovost'])->name('a
 Route::get('/admin/izjave', [IzjavaController::class, 'getIzjave'])->name('admin.izjave');
 Route::get('/admin/izjave/dodavanje', [IzjavaController::class, 'dodajIzjavu'])->name('admin.izjave.dodavanje');
 Route::post('/admin/izjave', [IzjavaController::class, 'spasiIzjavu'])->name('admin.izjave.spasavanje');
+Route::delete('/admin/izjave/{id}', [IzjavaController::class, 'obrisiIzjavu'])->name('admin.izjave.brisanje');
+Route::get('/admin/izjave/{id}', [IzjavaController::class, 'pregledajIzjavu'])->name('admin.izjave.pregled');
+Route::get('/admin/izjave/uredjivanje/{id}', [IzjavaController::class, 'urediIzjavu'])->name('admin.izjave.uredjivanje');
+Route::post('/admin/izjave/uredjivanje/{id}', [IzjavaController::class, 'spasiPromjene'])->name('admin.izjave.azuriranje');
+
 
 /* Rute za pregled liste izjave, dodavanje izjave, pregled, uređivanje i brisanje izjave*/
 Route::get('/admin/postignuca', [PostignuceController::class, 'getPostignuca'])->name('admin.postignuca');

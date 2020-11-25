@@ -17,7 +17,7 @@ class CreateIzjavaTable extends Migration
             $table->id();
             $table->string('ime');
             $table->string('prezime');
-            $table->string('tekst');
+            $table->text('tekst');
             $table->string('slika');
             $table->timestamps();
         });
