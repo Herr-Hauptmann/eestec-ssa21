@@ -9,17 +9,16 @@ class Partner extends Model
 {
     protected $table = 'partner';
 
-    protected $fillable = ['naziv', 'slika', 'link', 'kategorija_id', 'edicija_id'];
+    protected $fillable = ['naziv', 'slika', 'link'];
 
-    public function edicija()
+    public function edicije()
     {
-        return $this->belongsTo('App\Models\Edicija');
+        return $this->belongsToMany('App\Models\Edicija', 'edicija_partner_kategorija');
     }
 
-    public function kategorija()
+    public function kategorije()
     {
-        return $this->belongsTo('App\Models\Kategorija');
+        return $this->belongsToMany('App\Models\Kategorija', 'edicija_partner_kategorija');
     }
-
     use HasFactory;
 }

@@ -18,29 +18,10 @@
                 @csrf
                 @method('PATCH')
 
-                {{-- {{ csrf_field() }} --}}
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="naziv-medija">Naziv</label>
                     <input value={{$partner->naziv}} type="text" class="form-control" name="naziv" id="naziv-medija" placeholder="Naziv">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="partneriInputKategorije">Kategorija</label>
-                        <select id="partneriInputKategorije" name="kategorija_id" class="form-control">
-                            {{-- dodati da selecta trenutnu kategoriju --}}
-                            @foreach ($kategorije as $kategorija)
-                                <option value={{$kategorija->id}}>{{$kategorija->naziv}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="partneriInputEdicija">Edicija</label>
-                        <select id="partneriInputEdicija" name="edicija_id" class="form-control">
-                            {{-- dodati da selecta trenutnu ediciju --}}
-                            @foreach ($edicije as $edicija)
-                                <option value={{$edicija->id}}>{{$edicija->naziv}}</option>
-                            @endforeach
-                        </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="linkPartnera">Link</label>

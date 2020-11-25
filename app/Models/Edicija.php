@@ -48,10 +48,6 @@ class Edicija extends Model
     {
         return $this->belongsToMany('App\Models\Partner', 'edicija_partner_kategorija');
     }
-    public function partneri2()
-    {
-        return $this->hasMany('App\Models\Partner');
-    }
 
     public function slike()
     {

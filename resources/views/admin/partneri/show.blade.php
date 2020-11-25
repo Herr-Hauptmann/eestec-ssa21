@@ -24,26 +24,6 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <p class="text-left font-weight-bold">
-                        Kategorija:
-                    </p>
-                </div>
-                <div class="col-12 col-md-8">
-                    <p class="text-left" >
-                        {{$partner->kategorija->naziv}}
-                    </p>
-                </div>
-                <div class="col-12 col-md-4">
-                    <p class="text-left font-weight-bold">
-                        Edicija:
-                    </p>
-                </div>
-                <div class="col-12 col-md-8">
-                    <p class="text-left">
-                        to be implemented
-                    </p>
-                </div>
-                <div class="col-12 col-md-4">
-                    <p class="text-left font-weight-bold">
                         Link:
                     </p>
                 </div>

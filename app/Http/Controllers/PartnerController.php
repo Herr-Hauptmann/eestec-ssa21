@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Partner;
 
 class PartnerController extends Controller
 {
@@ -24,10 +25,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        $kategorije = \App\Models\Kategorija::all();
-        $edicije = \App\Models\Edicija::all();
-
-        return view('admin.partneri.dodavanje', compact('kategorije', 'edicije'));
+        return view('admin.partneri.dodavanje');
     }
 
     /**
@@ -42,8 +40,6 @@ class PartnerController extends Controller
         $partner = new \App\Models\Partner;
         $partner->naziv = $request->naziv;
         $partner->link = $request->link;
-        $partner->kategorija_id = $request->kategorija_id;
-        $partner->edicija_id = $request->edicija_id;
         $partner->slika = "";
 
         $partner->save();
@@ -72,9 +68,7 @@ class PartnerController extends Controller
     public function edit($id)
     {
         $partner = \App\Models\Partner::find($id);
-        $kategorije = \App\Models\Kategorija::all();
-        $edicije = \App\Models\Edicija::all();
-        return view('admin.partneri.edit', compact('partner','edicije','kategorije'));
+        return view('admin.partneri.edit', compact('partner'));
     }
 
     /**
@@ -89,8 +83,6 @@ class PartnerController extends Controller
         $partner = \App\Models\Partner::find($id);
         $partner->naziv = $request->naziv;
         $partner->link = $request->link;
-        $partner->kategorija_id = $request->kategorija_id;
-        $partner->edicija_id = $request->edicija_id;
         $partner->slika = "";
 
         $partner->save();
@@ -112,4 +104,18 @@ class PartnerController extends Controller
         // return redirect('/admin/partneri')->with('flash_message', 'Uspjesno ste izbrisali partnera!');
         return back();
     }
+
+    /**
+     * Filters list of partners nased on 'naziv'
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        $search_text = $_GET['partner_search'];
+        $partneri = Partner::where('naziv', 'LIKE', '%'.$search_text.'%')->get();
+
+        return view('admin.partneri.lista', compact('partneri'));
+    }
+
 }

@@ -25,8 +25,6 @@ class PartnerFactory extends Factory
             'naziv' => $this->faker->userName,
             'link' => $this->faker->url,
             'slika' => $this->faker->imageUrl,
-            'kategorija_id'=> 1,
-            'edicija_id'=> 1
         ];
     }
 }

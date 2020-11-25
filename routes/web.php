@@ -75,6 +75,7 @@ Route::post('/admin/mediji', [MedijController::class, 'spasiMedij'])->name('admi
 
 /* Rute za pregled liste partnera, dodavanje partnera, pregled, uređivanje i brisanje partnera*/
 Route::resource('admin/partneri', PartnerController::class);
+Route::get('/partneri/search', [PartnerController::class, 'search'])->name('admin.partneri.search');
 
 /* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti*/
 Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
