@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Organizator::factory(50)->create();
+        \App\Models\Pozicija::factory(6)->create();
+        \App\Models\Trener::factory(5)->create();
         // $this->call(Organizator::class);
     }
 }

@@ -51,9 +51,8 @@ Route::resource('/admin/pozicije', PozicijaController::class);
 Route::get('/pozicije/search', [PozicijaController::class, 'search'])->name('admin.pozicije.search');
 
 /* Rute za pregled liste trenera, dodavanje trenera, pregled, uređivanje i brisanje trenera*/
-Route::get('/admin/treneri', [TrenerController::class, 'getTreneri'])->name('admin.treneri');
-Route::get('/admin/treneri/dodavanje', [TrenerController::class, 'dodajTrenera'])->name('admin.treneri.dodavanje');
-Route::post('/admin/treneri', [TrenerController::class, 'spasiTrenera'])->name('admin.treneri.spasavanje');
+Route::resource('/admin/treneri', TrenerController::class);
+Route::get('/treneri/search', [TrenerController::class, 'search'])->name('admin.treneri.search');
 
 /* Rute za pregled liste treninga, dodavanje treninga, pregled, uređivanje i brisanje treninga*/
 Route::get('/admin/treninzi', [TreningController::class, 'getTreninzi'])->name('admin.treninzi');

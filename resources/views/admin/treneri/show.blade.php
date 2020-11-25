@@ -9,32 +9,32 @@
         </div>
         <div class="col-12 col-md-8 p-0 mt-5 mt-md-0 ml-md-3 border rounded border-secondary sadrzaj">
             <div class="list-group-item naslov-sadrzaja pb-0">
-                <p>{{$partner->naziv}}</p>
+                <p>{{$trener->ime}}</p>
             </div>
             <div class="row m-2 p-1">
                 <div class="col-12 col-md-4" allign-left>
                     <p class="text-left font-weight-bold">
-                        Naziv partnera:
+                        Ime trenera:
                     </p>
                 </div>
                 <div class="col-12 col-md-8">
                     <p class="text-left">
-                        {{$partner->naziv}}
+                        {{$trener->ime}}
                     </p>
                 </div>
                 <div class="col-12 col-md-4">
                     <p class="text-left font-weight-bold">
-                        Link:
+                        Prezime trenera:
                     </p>
                 </div>
                 <div class="col-12 col-md-8"  style="overflow: hidden">
                     <p class="text-left">
-                        <a href="{{$partner->link}}">{{$partner->link}}</a>
+                        {{$trener->prezime}}
                     </p>
                 </div>
                 <div class="col-12">
                     <p>
-                        <img src="/storage/logos/{{$partner->slika}}" class="img-responsive" style="width: 50%;" alt="slika" />
+                        <img src="/storage/treneri/{{$trener->slika}}" class="img-responsive" style="width: 50%;" alt="slika" />
                     </p>
                 </div>
             </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organizator extends Model
 {
-    
+
     protected $table = 'organizator';
 
     protected $fillable = ['ime', 'prezime', 'slika', 'mail', 'telefon'];
@@ -21,6 +21,6 @@ class Organizator extends Model
     {
         return $this->belongsToMany('App\Models\Pozicija', 'edicija_organizator_pozicija');
     }
-    
 
+    use HasFactory;
 }
