@@ -106,3 +106,7 @@ Route::post('/admin/prijave', [PrijavaUcesnikaController::class, 'spasiBodovanje
 
 /* Ruta za pregled rang liste*/
 Route::get('/admin/rang', [PrijavaUcesnikaController::class, 'getRang'])->name('admin.rang');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
