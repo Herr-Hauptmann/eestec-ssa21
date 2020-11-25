@@ -7,7 +7,7 @@
     <a class="list-group-item" href="{{ route('admin.treninzi') }}">Treninzi</a>
     <a class="list-group-item" href="{{ route('admin.kategorije') }}">Kategorije</a>
     <a class="list-group-item" href="{{ route('admin.mediji') }}">Mediji</a>
-    <a class="list-group-item" href="{{ route('admin.partneri') }}">Partneri</a>
+    <a class="list-group-item" href="{{ route('partneri.index') }}">Partneri</a>
     <a class="list-group-item" href="{{ route('admin.novosti') }}">Novosti</a>
     <a class="list-group-item" href="{{ route('admin.izjave') }}">Izjave</a>
     <a class="list-group-item" href="{{ route('admin.postignuca') }}">Postignuća</a>

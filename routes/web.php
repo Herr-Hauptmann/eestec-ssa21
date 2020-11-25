@@ -73,9 +73,8 @@ Route::get('/admin/mediji/dodavanje', [MedijController::class, 'dodajMedij'])->n
 Route::post('/admin/mediji', [MedijController::class, 'spasiMedij'])->name('admin.mediji.spasavanje');
 
 /* Rute za pregled liste partnera, dodavanje partnera, pregled, uređivanje i brisanje partnera*/
-Route::get('/admin/partneri', [PartnerController::class, 'getPartneri'])->name('admin.partneri');
-Route::get('/admin/partneri/dodavanje', [PartnerController::class, 'dodajPartnera'])->name('admin.partneri.dodavanje');
-Route::post('/admin/partneri', [PartnerController::class, 'spasiPartnera'])->name('admin.partneri.spasavanje');
+Route::resource('admin/partneri', PartnerController::class);
+Route::get('/partneri/search', [PartnerController::class, 'search'])->name('admin.partneri.search');
 
 /* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti*/
 Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');

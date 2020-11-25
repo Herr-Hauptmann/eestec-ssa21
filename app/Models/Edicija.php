@@ -39,7 +39,7 @@ class Edicija extends Model
     {
         return $this->belongsToMany('App\Models\Medij', 'edicija_medij_kategorija');
     }
-    
+
     public function kategorijePartner()
     {
         return $this->belongsToMany('App\Models\Kategorija', 'edicija_partner_kategorija');
