@@ -70,7 +70,10 @@ class PartnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $partner = \App\Models\Partner::find($id);
+        $kategorije = \App\Models\Kategorija::all();
+        $edicije = \App\Models\Edicija::all();
+        return view('admin.partneri.edit', compact('partner','edicije','kategorije'));
     }
 
     /**
@@ -82,7 +85,15 @@ class PartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $partner = \App\Models\Partner::find($id);
+        $partner->naziv = $request->naziv;
+        $partner->link = $request->link;
+        $partner->kategorija_id = $request->kategorija_id;
+        $partner->slika = "";
+
+        $partner->save();
+
+        return redirect('admin/partneri')->with('flash_message', 'Uspjesno ste azurirali novog organizatora!');
     }
 
     /**
