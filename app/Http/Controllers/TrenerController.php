@@ -159,7 +159,7 @@ class TrenerController extends Controller
 
     public function search()
     {
-        $search_text = $_GET['partner_search'];
+        $search_text = $_GET['trener_search'];
         $treneri = Trener::where('ime'.' '.'prezime', 'LIKE', '%'.$search_text.'%')->get();
 
         return view('admin.treneri.lista', compact('treneri'));
