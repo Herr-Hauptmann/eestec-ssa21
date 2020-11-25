@@ -55,35 +55,24 @@ class OrganizatorController extends Controller
         return view('admin.organizatori.show', compact('organizator'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $organizator = Organizator::where('id', $id)->firstOrFail();
+        return view('admin.organizatori.edit', compact('organizator'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $organizator = Organizator::where('id', $id)->firstOrFail();
+        $request -> validate(['ime' => 'required | min:3', 
+                                      'prezime'=> 'required | min:3',
+                                      'slika' => 'nullable | image | max:1999',
+                                      'telefon' => 'required | min:12 | max:13 | starts_with:+387',
+                                      'mail' => 'required | email:rfc,dns']);
+        $podaci = $request->all();
+        $organizator->update($podaci);
+        return redirect('admin/organizatori')->with('flash_message', 'Uspjesno ste uredili organizatora!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Organizator::destroy($id);

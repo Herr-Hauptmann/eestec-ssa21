@@ -13,7 +13,7 @@
                 <div class="row m-2 p-1">
                     <a href="{{ route('organizatori.index') }}"
                         class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na organizatore</a>
-                    <a href="organizatori/edit/{{ $organizator->id }}"
+                    <a href="/admin/organizatori/{{ $organizator->id }}/edit"
                         class="btn btn-sm btn-outline-warning col-12 col-sm-3 ml-auto mt-2 mt-lg-0">Uredi ovog
                         organizatora</a>
                     <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}">
@@ -45,25 +45,32 @@
                                     <div class="card-body">
                                         <div class="form-row">
                                             <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Ime</strong></label><div class="form-control">{{$organizator->ime}}</div></div>
+                                                <div class="form-group"><label for="first_name"><strong>Ime</strong></label>
+                                                    <div class="form-control">{{ $organizator->ime }}</div>
+                                                </div>
                                             </div>
                                             <div class="col">
-                                            <div class="form-group"><label for="last_name"><strong>Prezime</strong></label><div class="form-control">{{$organizator->prezime}}</div></div>
+                                                <div class="form-group"><label
+                                                        for="last_name"><strong>Prezime</strong></label>
+                                                    <div class="form-control">{{ $organizator->prezime }}</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col">
-                                                <div class="form-group"><label
-                                                        for="username"><strong>Broj telefona</strong></label><div
-                                                class="form-control">{{$organizator->telefon}}</div></div>
+                                                <div class="form-group"><label for="username"><strong>Broj
+                                                            telefona</strong></label>
+                                                    <div class="form-control">{{ $organizator->telefon }}</div>
+                                                </div>
 
                                             </div>
                                             <div class="col">
                                                 <div class="form-group"><label for="email"><strong>Email
-                                                adresa</strong></label><div class="form-control">{{$organizator->mail}}</div></div>
+                                                            adresa</strong></label>
+                                                    <div class="form-control">{{ $organizator->mail }}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
