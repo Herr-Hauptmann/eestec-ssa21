@@ -37,7 +37,7 @@
                         <td scope="row">{{$brojac}}</td>
                         <td>{{$partner->naziv}}</td>
                         <td>
-                            <img src={{$partner->slika}} class="img-responsive" style="height: 50px;" alt="slika" />
+                            <img src="/storage/logos/{{$partner->slika}}" class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
                             <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-info btn-sm item">View</a>
@@ -47,7 +47,7 @@
                             <form action="{{ route('partneri.destroy', $partner) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm item">Delete</button>
+                            <button type="submit" onclick="return confirm('Da li si siguran da zelis izbrisati {{$partner->naziv}}?')" class="btn btn-danger btn-sm item">Delete</button>
                             </form>
                         </td>
                         </tr>

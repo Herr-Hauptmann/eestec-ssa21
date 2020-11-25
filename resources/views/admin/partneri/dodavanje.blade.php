@@ -14,7 +14,17 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('partneri.index') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na partnere</a>
             </div>
-            <form class="m-5 pl-5" action="{{ route('partneri.store') }}" method="POST">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{-- <form class="m-5 pl-5" action="{{ route('partneri.store') }}" method="POST"> --}}
+            <form class="m-5 pl-5" action="{{ route('partneri.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -30,7 +40,7 @@
 {{-- fali dodavanje slike --}}
                     </div>
                     <div class="custom-file col-md-7 mt-4">
-                        <input type="file" class="custom-file-input" id="slikaPartnera" placeholder="slika">
+                        <input type="file" class="custom-file-input" name="logo" id="slikaPartnera" placeholder="slika" accept="image/png, image/jpeg, image/jpg">
                         <label class="custom-file-label" for="slikaPartnera">Umetni sliku</label>
                     </div>
                 </div>
