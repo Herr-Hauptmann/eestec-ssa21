@@ -12,14 +12,19 @@ class OrganizatorController extends Controller
     {
         $poStranici = 15;
         $keyword = $request->get('search');
-        $organizatori = Organizator::paginate($poStranici);
+        
         if (!empty($keyword)) {
-            $organizatori =Organizator::
+            $organizatori = Organizator::
                     where('ime', 'LIKE', "%$keyword%")
                     ->orWhere('prezime', 'LIKE', "%$keyword%")
                     ->orWhere('mail', 'LIKE', "%$keyword%")
-                    ->paginate($poStranici);
-        } 
+                    ->orderBy('updated_at', 'desc')
+                    -> paginate($poStranici);
+        }
+        else 
+        {
+            $organizatori = Organizator::orderBy('updated_at', 'desc')->paginate($poStranici);
+        }
         return view('admin.organizatori.index', compact('organizatori', 'poStranici'));
     }
 
@@ -42,18 +47,12 @@ class OrganizatorController extends Controller
         Organizator::create($podaci);
 
         return redirect('admin/organizatori')->with('flash_message', 'Uspjesno ste dodali novog organizatora!');
-        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $organizator = Organizator::where('id', $id)->firstOrFail();
+        return view('admin.organizatori.show', compact('organizator'));
     }
 
     /**

@@ -38,7 +38,7 @@
                             <td class="align-middle">{{$organizator->mail}}</td>
                             <td class="align-middle">
                                 <div class="row">
-                                    <a class="btn-kontrole btn btn-outline-info btn-sm item btn-block mr-1">View</a>
+                                <a class="btn-kontrole btn btn-outline-info btn-sm item btn-block mr-1" href="organizatori/{{$organizator->id}}">View</a>
                                 </div>
                                 <div class="row">
                                     <a class="btn btn-outline-success btn-sm item btn-block mr-1">Edit</a>
