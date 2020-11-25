@@ -58,7 +58,8 @@ class PartnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $partner = \App\Models\Partner::find($id);
+        return view('admin.partneri.show', compact('partner'));
     }
 
     /**
