@@ -23,3 +23,8 @@ body {
     background-color: #006762 !important;
     border-color: #006762;
 }
+
+.word-break {
+    word-wrap: break-word;
+    overflow: hidden;
+}

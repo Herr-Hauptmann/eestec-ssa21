@@ -1,8 +1,8 @@
 <div class="list-group izbornik-div ml-md-5" id="list-tab" role="tablist">
     <a class="list-group-item izbornik-hd">Izbornik</a>
     <a class="list-group-item" href="{{ route('admin.edicije') }}">Edicije</a>
-    <a class="list-group-item" href="{{ route('admin.organizatori') }}">Organizatori</a>
-    <a class="list-group-item" href="{{ route('pozicije.index') }}">Pozicije</a>
+    <a class="list-group-item" href="{{ route('organizatori.index') }}">Organizatori</a>
+    <a class="list-group-item" href="{{ route('admin.pozicije') }}">Pozicije</a>
     <a class="list-group-item" href="{{ route('admin.treneri') }}">Treneri</a>
     <a class="list-group-item" href="{{ route('admin.treninzi') }}">Treninzi</a>
     <a class="list-group-item" href="{{ route('admin.kategorije') }}">Kategorije</a>

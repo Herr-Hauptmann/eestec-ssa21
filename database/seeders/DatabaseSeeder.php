@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Organizator;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Pozicija::factory()->times(6)->create();
-        // \App\Models\User::factory(10)->create();
+        \App\Models\Organizator::factory(50)->create();
+        // $this->call(Organizator::class);
     }
 }
