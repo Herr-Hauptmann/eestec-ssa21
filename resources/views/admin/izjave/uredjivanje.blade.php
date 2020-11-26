@@ -20,6 +20,18 @@
                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
                 @endforeach
                 <div class="form-row">
+                <div class="container-fluid">
+                    <div class="row mb-3 justify-content-center">
+                        <div class="col-lg-4">
+                            <div class="card mb-3">
+                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
+                                        src="{{$izjava->slika }}" width="160" height="160">
+                                    <!--   <button class="btn btn-primary mt-4">Promijeni sliku</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     <div class="form-group col-md-6">
                         <label for="ime-participanta">Ime</label>
                         <input type="text" class="form-control" id="imeParticipanta" name="imeParticipanta"  value="{{$izjava->ime}}" placeholder="Ime participanta">
@@ -31,10 +43,6 @@
                     <div class="form-group col-md-12">
                         <label for="pozicija-opis">Izjava</label>
                         <textarea class="form-control" id="izjavaParticipanta" name="izjavaParticipanta" rows="3">{{$izjava->tekst}}</textarea>
-                    </div>
-                    <div class="custom-file col-md-12 mt-4">
-                        <input type="file" class="custom-file-input" id="slikaParticipanta" name="slikaParticipanta">
-                        <label class="custom-file-label" for="slikaParticipanta">Umetni sliku</label>
                     </div>
                 </div>
 

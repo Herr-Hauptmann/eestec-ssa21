@@ -31,29 +31,35 @@
                         <th scope="col">Ime</th>
                         <th scope="col">Prezime</th>
                         <th scope="col">Tekst</th>
-                        <th scope="col">Slika</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach ($izjave as $izjava) 
                     <tr>
                         <th scope="row">{{ $loop->index + 1 }}</th>
                         <td>{{ $izjava->ime }}</td>
                         <td>{{ $izjava->prezime }}</td>
-                        <td class="text-truncate"  style="max-width: 450px;" >{{ $izjava->tekst }}</td>
-                        <td>
-                            <img src="{{ $izjava->slika }}" class="img-responsive" style="height: 50px;" alt="slika"  />
-                        </td>
-                        <td>
+                        <td class="text-truncate"  style="max-width: 540px; display: block;" >{{ $izjava->tekst }}</td>
+                        <td > <div style="float:right;">
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a class="btn-kontrole btn btn-outline-info btn-sm item" href="{{ route('admin.izjave.pregled', $izjava->id) }}" >Pregled</a>
                             <a class="btn btn-outline-success btn-sm item" href="{{ route('admin.izjave.uredjivanje', $izjava->id) }}">Uredi</a>
                             <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item" data-href="{{ route('admin.izjave.brisanje', $izjava->id) }}">Obriši</a>
+                        </div>
                         </td>
                         </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="row align-items-center justify-content-center align-middle">
+                                    {!! $izjave->links("pagination::bootstrap-4")!!}
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
             </table>
             @if($izjave->isEmpty())
                 <div>Nema izjava za prikaz!</div>

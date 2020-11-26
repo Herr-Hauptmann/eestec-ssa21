@@ -11,11 +11,16 @@ class IzjavaController extends Controller
     public function getIzjave(Request $request)
     { 
         $polje = $request->input('pretraga');
+        $brIzjava = 3;
 
         if(!empty($polje)) {
-           $izjave = Izjava::where('ime', 'LIKE', "%{$polje}%")->where('prezime', 'LIKE', "%{$polje}%")->orwhere(DB::raw('concat(ime," ",prezime)') , 'LIKE' , "%{$polje}%")->orwhere(DB::raw('concat(prezime," ",ime)') , 'LIKE' , "%{$polje}%")->get();
+           $izjave = Izjava::where('ime', 'LIKE', "%{$polje}%")
+           ->where('prezime', 'LIKE', "%{$polje}%")
+           ->orwhere(DB::raw('concat(ime," ",prezime)') , 'LIKE' , "%{$polje}%")
+           ->orwhere(DB::raw('concat(prezime," ",ime)') , 'LIKE' , "%{$polje}%")
+           ->orderBy('updated_at', 'desc')->paginate($brIzjava);;
         } else {
-            $izjave = Izjava::all();
+            $izjave = Izjava::orderBy('updated_at', 'desc')->paginate($brIzjava);;
         }
         return view('admin.izjave.lista', ['izjave'=>$izjave]);
     }
@@ -30,9 +35,9 @@ class IzjavaController extends Controller
     {
         //ovdje treba implementirati da se pokupljeni podaci iz forme spase u bazu
         $validate = $request->validate([
-            'imeParticipanta' => ['required', 'max:255'],
-            'prezimeParticipanta' => ['required', 'max:255'],
-            'izjavaParticipanta'=>['required', 'max:65535'],
+            'imeParticipanta' => ['required', 'max:255', 'min:2'],
+            'prezimeParticipanta' => ['required', 'max:255', 'min:2'],
+            'izjavaParticipanta'=>['required', 'max:65535', 'min:2'],
            // 'slika' => ['required'],
         ]);
 
@@ -67,23 +72,22 @@ class IzjavaController extends Controller
 
     public function spasiPromjene(Request $request, $id){
         $izjava = Izjava::findOrFail($id);
-        $izjava->delete();
 
-        $validate = $request->validate([
-            'imeParticipanta' => ['required', 'max:255'],
-            'prezimeParticipanta' => ['required', 'max:255'],
-            'izjavaParticipanta'=>['required', 'max:65535'],
+        $request->validate([
+            'imeParticipanta' => ['required', 'max:255', 'min:2'],
+            'prezimeParticipanta' => ['required', 'max:255','min:2'],
+            'izjavaParticipanta'=>['required', 'max:65535', 'min:2'],
            // 'slika' => ['required'],
         ]);
-
-
-        $izjava = new Izjava();
-        $izjava->ime = $request->input('imeParticipanta');
-        $izjava->prezime = $request->input('prezimeParticipanta');
-        $izjava->tekst = $request->input('izjavaParticipanta');
         //azuriranje slike ???
         $izjava->slika = 'https://i.pinimg.com/originals/34/a6/c5/34a6c57f16c9c440dc479679c7ad2ad0.png';
         //$izjava->slika = $req->file('slikaParticipanta');
+
+
+        $izjava->ime = $request->input('imeParticipanta');
+        $izjava->prezime = $request->input('prezimeParticipanta');
+        $izjava->tekst = $request->input('izjavaParticipanta');
+     
         $izjava->saveOrFail();
         $tekstPoruke = "Uspješno ste ažurirali izjavu participanta {$izjava->ime} {$izjava->prezime}!";
         return redirect()->route('admin.izjave')->with('success', $tekstPoruke);
