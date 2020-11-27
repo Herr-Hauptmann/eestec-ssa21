@@ -21,6 +21,8 @@ class Organizator extends Model
     {
         return $this->belongsToMany('App\Models\Pozicija', 'edicija_organizator_pozicija');
     }
+    
+    use HasFactory;
 
     use HasFactory;
 }
