@@ -3,7 +3,7 @@
     <a class="list-group-item" href="{{ route('admin.edicije') }}">Edicije</a>
     <a class="list-group-item" href="{{ route('organizatori.index') }}">Organizatori</a>
     <a class="list-group-item" href="{{ route('pozicije.index') }}">Pozicije</a>
-    <a class="list-group-item" href="{{ route('admin.treneri') }}">Treneri</a>
+    <a class="list-group-item" href="{{ route('treneri.index') }}">Treneri</a>
     <a class="list-group-item" href="{{ route('admin.treninzi') }}">Treninzi</a>
     <a class="list-group-item" href="{{ route('admin.kategorije') }}">Kategorije</a>
     <a class="list-group-item" href="{{ route('admin.mediji') }}">Mediji</a>
