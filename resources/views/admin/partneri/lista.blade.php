@@ -40,14 +40,12 @@
                             <img src="/storage/logos/{{$partner->slika}}" class="img-responsive" style="height: 50px;" alt="slika" />
                         </td>
                         <td>
-                            <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-info btn-sm item">View</a>
-                            <a href="partneri/{{$partner->id}}/edit" class="btn btn-success btn-sm item">Edit</a>
-                        </td>
-                        <td>
+                            <a href="partneri/{{$partner->id}}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
+                            <a href="partneri/{{$partner->id}}/edit" class="btn btn-outline-success btn-sm item">Edit</a>
                             <form action="{{ route('partneri.destroy', $partner) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                            <button type="submit" onclick="return confirm('Da li si siguran da zelis izbrisati {{$partner->naziv}}?')" class="btn btn-danger btn-sm item">Delete</button>
+                            <button type="submit" onclick="return confirm('Da li si siguran da zelis izbrisati {{$partner->naziv}}?')" class="btn btn-outline-danger btn-sm item">Delete</button>
                             </form>
                         </td>
                         </tr>

@@ -14,15 +14,6 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('partneri.index') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na partnere</a>
             </div>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form class="m-5 pl-5" action="/admin/partneri/{{ $partner->id }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
@@ -30,11 +21,21 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="naziv-medija">Naziv</label>
-                    <input value={{$partner->naziv}} type="text" class="form-control" name="naziv" id="naziv-medija" placeholder="Naziv">
+                    <input value="{{ old('naziv') ?? $partner->naziv }}" type="text" class="form-control" name="naziv" id="naziv-medija" placeholder="Naziv">
+                    @if ($errors->first('naziv'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('naziv') }}
+                        </div>
+                    @endif
                     </div>
                     <div class="form-group col-md-6">
                         <label for="linkPartnera">Link</label>
-                        <input value={{$partner->link}} type="text" class="form-control" name="link" id="linkPartnera" placeholder="Link">
+                        <input value="{{ old('link') ?? $partner->link }}" type="text" class="form-control" name="link" id="linkPartnera" placeholder="Link">
+                        @if ($errors->first('link'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('link') }}
+                        </div>
+                    @endif
                     </div>
                     <div class="form-group col-md-6">
 {{-- fali dodavanje slike --}}
