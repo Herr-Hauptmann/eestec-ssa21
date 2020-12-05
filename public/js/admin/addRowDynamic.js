@@ -6,7 +6,11 @@ $("input[data-addrow]").click(function(event) {
 
     let clonedTableRow = $(tableRow.clone(true));
     
-    clonedTableRow.find('select').toArray().forEach(select => $(select).prop('selectedIndex', 0));
+    clonedTableRow.find('select').toArray().forEach(function(select) {
+        $(select).prop('selectedIndex', 0);
+        $(select).removeClass('is-invalid');
+        $(select).next().remove();
+    });
 
     clonedTableRow.appendTo(tableBody);
 });
