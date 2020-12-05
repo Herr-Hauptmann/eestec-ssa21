@@ -22,3 +22,13 @@ $("input[data-removerow]").click(function(event) {
         tableRow.remove();
     }
 });
+
+$("#unosStare").change(function() {
+    if (this.checked) {
+        $("#datumiOtvaranjaIZatvaranjaPrijava").hide('slow');
+    }
+    else {
+        $("#datumiOtvaranjaIZatvaranjaPrijava").removeClass('d-none');
+        $("#datumiOtvaranjaIZatvaranjaPrijava").show('slow');
+    }
+});
