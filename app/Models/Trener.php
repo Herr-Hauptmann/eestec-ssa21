@@ -22,4 +22,6 @@ class Trener extends Model
     {
         return $this->belongsToMany('App\Models\Trening', 'edicija_trener_trening');
     }
+
+    use HasFactory;
 }

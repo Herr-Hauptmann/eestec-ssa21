@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrganizatorFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Organizator::class;
 
     /**
@@ -22,12 +17,11 @@ class OrganizatorFactory extends Factory
     public function definition()
     {
         return [
-            'ime' => $this->faker->firstName,
-            'prezime' => $this->faker->lastName,
-            'slika' => $this->faker->imageUrl,
-            'mail' => $this->faker->email,
-            'telefon' => $this->faker->phoneNumber
-
+                'ime' => $this->faker->name,
+                'prezime' => $this->faker->lastName,
+                'mail' => $this->faker->unique()->safeEmail,
+                'slika' => "nema.jbg",
+                'telefon' =>"+38769696969",
         ];
     }
 }

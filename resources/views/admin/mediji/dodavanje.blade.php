@@ -19,23 +19,15 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="nazivMedija">Naziv</label>
-                        <input type="text" class="form-control" id="nazivMedija" placeholder="Naziv">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="medijiInputKategorije">Kategorija</label>
-                        <select id="medijiInputKategorije" class="form-control">
-                            <option selected>Kategorija 1</option>
-                            <option>Kategorija 2</option>
-                            <option>Kategorija 3</option>
-                        </select>
+                        <input type="text" class="form-control" id="nazivMedija" placeholder="Naziv" name="naziv">
                     </div>
                     <div class="form-group col-md-6 mt-3">
                         <label for="linkMedija">Link</label>
-                        <input type="text" class="form-control" id="linkMedija" placeholder="Link">
+                        <input type="text" class="form-control" id="linkMedija" placeholder="Link" name="link">
                     </div>
 
                     <div class="custom-file col-md-7 mt-5">
-                        <input type="file" class="custom-file-input" id="slikaMedija" placeholder="slika">
+                        <input type="file" class="custom-file-input" id="slikaMedija" placeholder="slika" name="slika">
                         <label class="custom-file-label" for="slikaMedija">Umetni sliku</label>
                     </div>
                 </div>
