@@ -46,50 +46,50 @@
                             <td>{{ $edition->broj_ucesnika }}</td>
                         </tr>
                         <tr>
-                            <th scope="col">Organizatori:</th>
+                            <th class="align-middle" scope="col">Organizatori:</th>
                             <td>
                                 @foreach ($edition->organizatori as $organizator)
-                                    <a href="#">
+                                    <a href="{{ route('organizatori.show', $organizator->id) }}">
                                         {{ $organizator->ime . ' ' . $organizator->prezime }}
                                     </a>
-                                    &nbsp;(<b><a href="#" class="text-primary">{{ $organizator->naziv_pozicije }}</a></b>)
-                                    @if (!$loop->last) | @endif
+                                    &nbsp;(<b><a href="{{ route('pozicije.show', $organizator->pozicija_id) }}" class="text-primary">{{ $organizator->naziv_pozicije }}</a></b>)
+                                    @if (!$loop->last) <br> @endif
                                 @endforeach
                             </td>
                         </tr>
                         <tr>
-                            <th scope="col">Treneri:</th>
+                            <th class="align-middle" scope="col">Treneri:</th>
                             <td>
                                 @foreach ($edition->treneri as $trener)
-                                    <a href="#">
+                                    <a href="{{ route('treneri.show', $trener->id) }}">
                                         {{ $trener->ime . ' ' . $trener->prezime }}
                                     </a>
-                                    &nbsp;(<b><a href="#" class="text-primary">{{ $trener->naziv_treninga }}</a></b>)
-                                    @if (!$loop->last) | @endif
+                                    &nbsp;(<b><a href="{{ route('admin.treninzi.detalji', $trener->trening_id) }}" class="text-primary">{{ $trener->naziv_treninga }}</a></b>)
+                                    @if (!$loop->last) <br> @endif
                                 @endforeach
                             </td>
                         </tr>
                         <tr>
-                            <th scope="col">Partneri:</th>
+                            <th class="align-middle" scope="col">Partneri:</th>
                             <td>
                                 @foreach ($edition->partneri as $partner)
-                                    <a href="#">
+                                    <a href="{{ route('partneri.show', $partner->id) }}">
                                         {{ $partner->naziv }}
                                     </a>
                                     &nbsp;(<b><a href="#" class="text-primary">{{ $partner->naziv_kategorije }}</a></b>)
-                                    @if (!$loop->last) | @endif
+                                    @if (!$loop->last) <br> @endif
                                 @endforeach
                             </td>
                         </tr>
                         <tr>
-                            <th scope="col">Mediji:</th>
+                            <th class="align-middle" scope="col">Mediji:</th>
                             <td>
                                 @foreach ($edition->mediji as $medij)
-                                    <a href="#">
+                                    <a href="{{ route('admin.mediji.detalji', $medij->id) }}">
                                         {{ $medij->naziv }}
                                     </a>
                                     &nbsp;(<b><a href="#" class="text-primary">{{ $medij->naziv_kategorije }}</a></b>)
-                                    @if (!$loop->last) | @endif
+                                    @if (!$loop->last) <br> @endif
                                 @endforeach
                             </td>
                         </tr>
