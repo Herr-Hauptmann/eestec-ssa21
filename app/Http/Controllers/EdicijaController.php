@@ -94,50 +94,7 @@ class EdicijaController extends Controller
 
         $edition = Edicija::create($request->all() + ['logo' => '/img/logo1.png']);
         
-        // Kreiranje veza u pivot tabeli za organizatore i pozicije
-        $organizator_pozicija = [];
-
-        foreach($request->organizator_id as $index => $org_id) 
-        {
-            $organizator_pozicija[$org_id] = ['pozicija_id' => $request->pozicija_id[$index]];
-        }
-
-        $edition->organizatori()->sync($organizator_pozicija);
-
-        // Kreiranje veza u pivot tabeli za trenere i treninge
-
-        $trener_trening = [];
-
-        foreach($request->trener_id as $index => $trener_id) 
-        {
-            $trener_trening[$trener_id] = ['trening_id' => $request->trening_id[$index]];
-        }
-
-        $edition->treneri()->sync($trener_trening);
-
-        // Kreiranje veza u pivot tabeli za partnere i kategorije
-
-        $partner_kategorija = [];
-
-        foreach($request->partner_id as $index => $partner_id) 
-        {
-            $partner_kategorija[$partner_id] = ['kategorija_id' => $request->partner_kategorija_id[$index]];
-        }
-
-        $edition->partneri()->sync($partner_kategorija);
-
-        // Kreiranje veza u pivot tabeli za medije i kategorije
-
-        $medij_kategorija = [];
-
-        foreach($request->medij_id as $index => $medij_id) 
-        {
-            $medij_kategorija[$medij_id] = ['kategorija_id' => $request->medij_kategorija_id[$index]];
-        }
-
-        $edition->mediji()->sync($medij_kategorija);
-
-        // return response()->json($request->all() + $organizator_pozicija);
+        $this->syncRelations($edition, $request);
 
         return redirect()->route('admin.editions')->with('success', 'Edicija uspješno kreirana!');
     }
@@ -185,6 +142,26 @@ class EdicijaController extends Controller
 
         $edition->update($request->all());
         
+        $this->syncRelations($edition, $request);
+
+        return redirect()->route('admin.editions')->with('success', 'Edicija uspješno izmjenjena!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Edicija  $edition
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Edicija $edition)
+    {
+        $edition->delete();
+
+        return redirect()->route('admin.editions')->with('flash_message', 'Edicija uspjesno izbrisana!');
+    }
+
+    private function syncRelations($edition, $request)
+    {
         // Kreiranje veza u pivot tabeli za organizatore i pozicije
         $organizator_pozicija = [];
 
@@ -227,21 +204,5 @@ class EdicijaController extends Controller
         }
 
         $edition->mediji()->sync($medij_kategorija);
-
-        // return response()->json($request->all() + $organizator_pozicija);
-        return redirect()->route('admin.editions')->with('success', 'Edicija uspješno izmjenjena!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Edicija  $edition
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Edicija $edition)
-    {
-        $edition->delete();
-
-        return redirect()->route('admin.editions')->with('flash_message', 'Edicija uspjesno izbrisana!');
     }
 }
