@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="container-fluid pt-5 pl-5 izbornik">
+    @include('admin.flash-messages')
     <div class="row">
         <div class="col-md-3 col-12">
             @include('admin.izbornik')
@@ -11,6 +12,7 @@
             <div class="list-group-item naslov-sadrzaja pb-0">
                 <p>Edicije</p>
             </div>
+            
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.edition.create') }}" class="btn btn-sm btn-outline-success col-12 col-sm-3">Dodaj novu ediciju</a>
                 <form class="form-inline ml-auto mt-2 mt-lg-0" name="edicijesearch" action="{{ url()->current() }}" method="GET" role="search">
