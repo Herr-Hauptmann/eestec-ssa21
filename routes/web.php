@@ -34,13 +34,19 @@ Route::get('/prijava', [PrijavaRegistracijaController::class, 'prijava'])->name(
 Route::get('/registracija', [PrijavaRegistracijaController::class, 'registracija'])->name('registracija');
 
 
-Route::get('/admin', [EdicijaController::class, 'getEdicije'])->name('admin');
-Route::post('/admin', [EdicijaController::class, 'getEdicije'])->name('admin');
+Route::get('/admin', [EdicijaController::class, 'index'])->name('admin');
+// Route::post('/admin', [EdicijaController::class, 'index'])->name('admin');
 
 /* Rute za pregled liste edicija, dodavanje edicije, pregled, uređivanje i brisanje edicije*/
-Route::get('/admin/edicije', [EdicijaController::class, 'getEdicije'])->name('admin.edicije');
-Route::get('/admin/edicije/dodavanje', [EdicijaController::class, 'dodajEdiciju'])->name('admin.edicije.dodavanje');
-Route::post('/admin/edicije', [EdicijaController::class, 'spasiEdiciju'])->name('admin.edicije.spasavanje');
+Route::prefix('admin/edicije')->group(function() {
+    Route::get('/', [EdicijaController::class, 'index'])->name('admin.editions');
+    Route::get('/dodavanje', [EdicijaController::class, 'create'])->name('admin.edition.create');
+    Route::post('/', [EdicijaController::class, 'store'])->name('admin.edition.store');
+    Route::get('/{edition}', [EdicijaController::class, 'show'])->name('admin.edition.show');
+    Route::get('/izmjeni/{edition}', [EdicijaController::class, 'edit'])->name('admin.edition.edit');
+    Route::post('/izmjeni/{edition}', [EdicijaController::class, 'update'])->name('admin.edition.update');
+    Route::delete('/izbrisi/{edition}', [EdicijaController::class, 'destroy'])->name('admin.edition.destroy');
+});
 
 
 /* Rute za pregled liste organizatora, dodavanje organizatora, pregled, uređivanje i brisanje organizatora*/

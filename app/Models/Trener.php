@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trener extends Model
 {
+    use HasFactory;
+
     protected $table = 'trener';
 
     protected $fillable = ['ime', 'prezime', 'slika'];

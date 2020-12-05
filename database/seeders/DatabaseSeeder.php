@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Organizator;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Organizator::factory(50)->create();
-        \App\Models\Pozicija::factory(6)->create();
-        \App\Models\Trener::factory(5)->create();
-        // $this->call(Organizator::class);
+        $this->call([
+            OrganizatorSeeder::class,
+            PozicijaSeeder::class,
+            TrenerSeeder::class,
+            TreningSeeder::class,
+            PartnerSeeder::class,
+            MedijSeeder::class,
+            KategorijaSeeder::class,
+            // EditionSeeder::class
+        ]);
     }
 }

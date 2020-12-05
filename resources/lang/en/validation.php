@@ -118,6 +118,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'required_if_array' => 'The :attribute field is required',
 
     /*
     |--------------------------------------------------------------------------
@@ -147,6 +148,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'organizator_id.*'          => 'Organizator',
+        'pozicija_id.*'             => 'Pozicija',
+        'trener_id.*'               => 'Trener',
+        'trening_id.*'              => 'Trening',
+        'partner_id.*'              => 'Partner',
+        'partner_kategorija_id.*'   => 'Kategorija',
+        'medij_kategorija_id.*'     => 'Kategorija',
+        'medij_id.*'                => 'Medij',
+    ],
 
 ];
