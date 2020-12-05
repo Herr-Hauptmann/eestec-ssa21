@@ -10,12 +10,35 @@ use App\Models\Partner;
 use App\Models\Pozicija;
 use App\Models\Trener;
 use App\Models\Trening;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
+use function PHPUnit\Framework\matches;
+
+// use illuminate\Validation\Validator
 
 class EdicijaController extends Controller
 {
+
+    private const STORE_OR_UPDATE_VALIDATION_RULES = [
+        'naziv'                     => 'required|unique:edicija',
+        'ssa_tip'                   => 'required',
+        'broj_ucesnika'             => 'required|min:0|max:200',
+        'datum_pocetka'             => 'required|after:today',
+        'datum_kraja'               => 'required|after_or_equal:datum_pocetka',
+        'mjesto_odrzavanja'         => 'required',
+        'datum_otvaranja_prijava'   => 'required|before:datum_pocetka',
+        'datum_zatvaranja_prijava'  => 'required|after:datum_otvaranja_prijava|before:datum_pocetka',
+        'organizator_id.*'          => 'required_if_array:pozicija_id,1',
+        'pozicija_id.*'             => 'required_if_array:organizator_id,1',
+        'trener_id.*'               => 'required_if_array:trening_id,1',
+        'trening_id.*'              => 'required_if_array:trener_id,1',
+        'partner_id.*'              => 'required_if_array:partner_kategorija_id,1',
+        'partner_kategorija_id.*'   => 'required_if_array:partner_id,1',
+        'medij_id.*'                => 'required_if_array:medij_kategorija_id,1',
+        'medij_kategorija_id.*'     => 'required_if_array:medij_id,1',
+    ];
+
+
     /**
      * Display a listing of the editions.
      *
@@ -67,6 +90,8 @@ class EdicijaController extends Controller
     {
         // dd($request->all());
         // return response()->json($request);
+        $request->validate(self::STORE_OR_UPDATE_VALIDATION_RULES);
+
         $edition = Edicija::create($request->all() + ['logo' => '/img/logo1.png']);
         
         // Kreiranje veza u pivot tabeli za organizatore i pozicije
