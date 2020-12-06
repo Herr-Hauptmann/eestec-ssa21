@@ -17,7 +17,7 @@ class CreateOrganizatorTable extends Migration
             $table->id();
             $table->string('ime');
             $table->string('prezime');
-            $table->string('slika');
+            $table->string('slika')->default("nemaslike.jpg");
             $table->string('mail');
             $table->string('telefon');
             $table->timestamps();

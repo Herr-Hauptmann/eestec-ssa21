@@ -118,7 +118,7 @@ class Edicija extends Model
                 'kategorija.id'
             );
     }
-    
+
     public function kategorijePartner()
     {
         return $this->

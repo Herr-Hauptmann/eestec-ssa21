@@ -24,7 +24,7 @@ class PozicijaFactory extends Factory
         $pozicije = ['Glavni organizator', 'FR', 'PR', 'HR', 'IT'];
 
         return [
-            'naziv' => $pozicije[rand(0, count(array($pozicije)) - 1)],
+            'naziv' => $pozicije[rand(0, count($pozicije) - 1)],
             'opis'  => $this->faker->text
         ];
     }

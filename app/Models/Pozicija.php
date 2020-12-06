@@ -22,4 +22,6 @@ class Pozicija extends Model
     {
         return $this->belongsToMany('App\Models\Edicija', 'edicija_organizator_pozicija', 'pozicija_id', 'edicija_id');
     }
+
+    use HasFactory;
 }

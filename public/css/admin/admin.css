@@ -31,3 +31,8 @@ body {
 .pagination .page-item.active .page-link {
     background-color: #00A59C;
 }
+
+.word-break {
+    word-wrap: break-word;
+    overflow: hidden;
+}

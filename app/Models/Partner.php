@@ -22,4 +22,5 @@ class Partner extends Model
     {
         return $this->belongsToMany('App\Models\Kategorija', 'edicija_partner_kategorija', 'partner_id', 'kategorija_id');
     }
+    use HasFactory;
 }

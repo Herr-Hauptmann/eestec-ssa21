@@ -24,7 +24,7 @@ class PartnerFactory extends Factory
         return [
             'naziv' => $this->faker->userName,
             'link' => $this->faker->url,
-            'slika' => $this->faker->imageUrl
+            'slika' => $this->faker->imageUrl,
         ];
     }
 }

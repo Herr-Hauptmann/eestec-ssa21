@@ -14,7 +14,7 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.treninzi') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na treninge</a>
             </div>
-            <form class="m-5" action="{{ route('admin.treninzi.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.treninzi.azuriranje', $trening->id) }}" method="POST">
                 {{ csrf_field() }}
                 @foreach($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
@@ -22,11 +22,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-12 px-5">
                         <label for="nazivTreninga">Naziv</label>
-                        <input type="text" name="naziv" class="form-control" id="nazivTreninga" placeholder="Naziv">
+                        <input type="text" name="naziv" value="{{ $trening->naziv }}" class="form-control" id="nazivTreninga" placeholder="Naziv">
                     </div>
                     <div class="form-group col-md-12 px-5">
                         <label for="pozicijaOpis">Opis</label>
-                        <textarea class="form-control" name="opis" id="pozicijaOpis" rows="3"></textarea>
+                        <textarea class="form-control" name="opis" id="pozicijaOpis" rows="3">{{ $trening->opis }}</textarea>
                     </div>
                     <div class="custom-file col-md-6 mt-4 ml-5">
                         <input type="file" class="custom-file-input" name="slika" id="slikaTrening">

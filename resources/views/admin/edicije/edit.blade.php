@@ -12,13 +12,13 @@
         </div>
         <div class="col-12 col-md-8 p-0 mt-5 mt-md-0 ml-md-3 border rounded border-secondary sadrzaj">
             <div class="list-group-item naslov-sadrzaja pb-0">
-                <p>Dodavanje nove edicije</p>
+                <p>Izmjena edicije</p>
             </div>
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.editions') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na edicije</a>
             </div>
-            {{-- Uncomment below if you want to display all errors on top of page
-                @if ($errors->any())
+            {{-- Uncomment below if you want to display all errors on top of page --}}
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -26,24 +26,18 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif --}}
-            <form class="m-5" action="{{ route('admin.edition.store') }}" method="POST">
+            @endif
+            <form class="m-5" action="{{ route('admin.edition.update', $edition->id) }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-6">
                         <label for="edicijaInputNaziv">Naziv</label>
-                        <input type="text" class="form-control @error('naziv') is-invalid @enderror" id="edicijaInputNaziv" placeholder="Naziv" name="naziv" value="{{ old('naziv') }}">
+                        <input type="text" class="form-control @error('naziv') is-invalid @enderror" id="edicijaInputNaziv" placeholder="Naziv" name="naziv" value="{{ old('naziv', $edition->naziv) }}">
                         @error('naziv')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
-                    <div class="form-group col-6">
-                        <input class="form-check-input" type="checkbox" name="unos_stare" id="unosStare" @if (old('unos_stare')) checked @endif>
-                        <label class="form-check-label" for="unosStare">
-                            <i>Unos stare edicije</i>
-                        </label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -71,7 +65,7 @@
                     </div> --}}
                     <div class="form-group col-4">
                         <label for="edicijeInputBrojUcesnika">Broj učesnika</label>
-                        <input type="number" class="form-control @error('broj_ucesnika') is-invalid @enderror" id="edicijeInputBrojUcesnika" placeholder="30" name="broj_ucesnika" min="0" max="200" value="{{ old('broj_ucesnika') }}">
+                        <input type="number" class="form-control @error('broj_ucesnika') is-invalid @enderror" id="edicijeInputBrojUcesnika" placeholder="30" name="broj_ucesnika" min="0" max="200" value="{{ old('broj_ucesnika', $edition->broj_ucesnika) }}">
                         @error('broj_ucesnika')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -80,7 +74,7 @@
                     </div>
                     <div class="form-group col-4">
                         <label for="mjestoOdrzavanja">Mjesto održavanja</label>
-                        <input type="text" class="form-control @error('mjesto_odrzavanja') is-invalid @enderror" id="mjestoOdrzavanja" placeholder="Mjesto održavanja" name="mjesto_odrzavanja" value="{{ old('mjesto_odrzavanja') }}">
+                        <input type="text" class="form-control @error('mjesto_odrzavanja') is-invalid @enderror" id="mjestoOdrzavanja" placeholder="Mjesto održavanja" name="mjesto_odrzavanja" value="{{ old('mjesto_odrzavanja', $edition->mjesto_odrzavanja) }}">
                         @error('mjesto_odrzavanja')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -91,7 +85,7 @@
                 <div class="form-row">
                     <div class="form-group col-6">
                         <label for="datumPocetka">Datum početka</label>
-                        <input type="date" class="form-control @error('datum_pocetka') is-invalid @enderror" id="datumPocetka" placeholder="dd.mm.gggg" name="datum_pocetka" value="{{ old('datum_pocetka') }}">
+                        <input type="date" class="form-control @error('datum_pocetka') is-invalid @enderror" id="datumPocetka" placeholder="dd.mm.gggg" name="datum_pocetka" value="{{ old('datum_pocetka', $edition->datum_pocetka) }}">
                         @error('datum_pocetka')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -100,7 +94,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="datumKraja">Datum kraja</label>
-                        <input type="date" class="form-control @error('datum_kraja') is-invalid @enderror" id="datumKraja" placeholder="dd.mm.gggg" name="datum_kraja" value="{{ old('datum_kraja') }}">
+                        <input type="date" class="form-control @error('datum_kraja') is-invalid @enderror" id="datumKraja" placeholder="dd.mm.gggg" name="datum_kraja" value="{{ old('datum_kraja', $edition->datum_kraja) }}">
                         @error('datum_kraja')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -111,7 +105,7 @@
                 <div id="datumiOtvaranjaIZatvaranjaPrijava" class="form-row @if (old('unos_stare')) d-none @endif">
                     <div class="form-group col-md-6">
                         <label for="datumOtvaranja">Datum otvaranja prijava</label>
-                        <input type="date" class="form-control @error('datum_otvaranja_prijava') is-invalid @enderror" id="datumOtvaranja" placeholder="dd.mm.gggg" name="datum_otvaranja_prijava" value="{{ old('datum_otvaranja_prijava') }}">
+                        <input type="date" class="form-control @error('datum_otvaranja_prijava') is-invalid @enderror" id="datumOtvaranja" placeholder="dd.mm.gggg" name="datum_otvaranja_prijava" value="{{ old('datum_otvaranja_prijava', $edition->datum_otvaranja_prijava) }}">
                         @error('datum_otvaranja_prijava')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -120,7 +114,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="datumZatvaranja">Datum zatvaranja prijava</label>
-                        <input type="date" class="form-control @error('datum_zatvaranja_prijava') is-invalid @enderror" id="datumZatvaranja" placeholder="dd.mm.gggg" name="datum_zatvaranja_prijava" value="{{ old('datum_zatvaranja_prijava') }}">
+                        <input type="date" class="form-control @error('datum_zatvaranja_prijava') is-invalid @enderror" id="datumZatvaranja" placeholder="dd.mm.gggg" name="datum_zatvaranja_prijava" value="{{ old('datum_zatvaranja_prijava', $edition->datum_zatvaranja_prijava) }}">
                         @error('datum_zatvaranja_prijava')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -136,7 +130,10 @@
                     'select_option_1_text'  =>  function($organizer) { return $organizer->ime . ' ' . $organizer->prezime; },
                     'input_name2'           =>  'pozicija_id',
                     'array2'                =>  $positions,
-                    'select_option_2_text'  =>  function($position) { return $position->naziv; }
+                    'select_option_2_text'  =>  function($position) { return $position->naziv; },
+                    'edit'                  =>  [
+                        'relation1'         =>  'organizatori'
+                    ]
                 ])
                 @include('admin.edicije.table', [
                     'col1'                  =>  'Trener',
@@ -146,7 +143,10 @@
                     'select_option_1_text'  =>  function($trainer) { return $trainer->ime . ' ' . $trainer->prezime; },
                     'input_name2'           =>  'trening_id',
                     'array2'                =>  $trainings,
-                    'select_option_2_text'  =>  function($training) { return $training->naziv; }
+                    'select_option_2_text'  =>  function($training) { return $training->naziv; },
+                    'edit'                  =>  [
+                        'relation1'         =>  'treneri'
+                    ]
                 ])
                 @include('admin.edicije.table', [
                     'col1'                  =>  'Partner',
@@ -156,7 +156,11 @@
                     'select_option_1_text'  =>  function($partner) { return $partner->naziv; },
                     'input_name2'           =>  'partner_kategorija_id',
                     'array2'                =>  $categories,
-                    'select_option_2_text'  =>  function($category) { return $category->naziv; }
+                    'select_option_2_text'  =>  function($category) { return $category->naziv; },
+                    'edit'                  =>  [
+                        'relation1'         =>  'partneri',
+                        'related_id'        =>  'kategorija_id'
+                    ]
                 ])
                 @include('admin.edicije.table', [
                     'col1'                  =>  'Medij',
@@ -166,7 +170,11 @@
                     'select_option_1_text'  =>  function($media) { return $media->naziv; },
                     'input_name2'           =>  'medij_kategorija_id',
                     'array2'                =>  $categories,
-                    'select_option_2_text'  =>  function($category) { return $category->naziv; }
+                    'select_option_2_text'  =>  function($category) { return $category->naziv; },
+                    'edit'                  =>  [
+                        'relation1'         =>  'mediji',
+                        'related_id'        =>  'kategorija_id'
+                    ]
                 ])
                 {{-- <div class="form-row">
                     <table id="edicijeTabelaOrganizatorPozicija" class="table mt-5">
@@ -485,7 +493,7 @@
                         </tbody>
                     </table>
                 </div> --}}
-                <button type="submit" class="btn btn-primary mt-5">Spasi ediciju</button>
+                <button type="submit" class="btn btn-primary mt-5">Spasi izmjene</button>
             </form>
         </div>
     </div>
