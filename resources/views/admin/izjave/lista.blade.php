@@ -24,6 +24,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Traži</button>
                 </form>
             </div>
+            <br/>
             <table class="table teble-responsive table-hover mt-5">
                 <thead>
                     <tr>

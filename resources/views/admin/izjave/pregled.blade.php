@@ -19,7 +19,7 @@
                         <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
-                                        src="{{$izjava->slika }}" width="160" height="160">
+                                        src="/storage/izjave/{{$izjava->slika }}" width="160" height="160">
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <div class="col">
                                 <div class="card shadow mb-3">
                                     <div class="card-header py-3">
-                                        <p class="text-primary m-0 font-weight-bold">Podaci o organizatoru</p>
+                                        <p class="text-primary m-0 font-weight-bold">Detalji izjave</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="form-row">

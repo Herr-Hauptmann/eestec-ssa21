@@ -14,7 +14,7 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.izjave') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na izjave</a>
             </div>
-            <form class="m-5" action="{{ route('admin.izjave.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.izjave.spasavanje') }}" method="POST" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                 @foreach($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
@@ -33,7 +33,12 @@
                         <textarea class="form-control" id="izjavaParticipanta" name="izjavaParticipanta" rows="3"></textarea>
                     </div>
                     <div class="custom-file col-md-12 mt-4">
-                        <input type="file" class="custom-file-input" id="slikaParticipanta" name="slikaParticipanta">
+                        <input type="file" class="custom-file-input" id="slikaParticipanta" name="slikaParticipanta" placeholder="slikaParticipanta" accept="image/png, image/jpeg, image/jpg" value="{{ old('slikaParticipanta') }}">
+                        @if ($errors->first('slikaParticipanta'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('slikaParticipanta') }}
+                            </div>
+                        @endif
                         <label class="custom-file-label" for="slikaParticipanta">Umetni sliku</label>
                     </div>
                 </div>

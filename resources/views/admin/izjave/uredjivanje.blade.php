@@ -14,7 +14,7 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.izjave') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na izjave</a>
             </div>
-            <form class="m-5" action="{{ route('admin.izjave.azuriranje', $izjava->id) }}" method="POST">
+            <form class="m-5" action="{{ route('admin.izjave.azuriranje', $izjava->id) }}" method="POST" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                 @foreach($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">{{ $error }}</div>
@@ -25,12 +25,18 @@
                         <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
-                                        src="{{$izjava->slika }}" width="160" height="160">
+                                        src="/storage/izjave/{{$izjava->slika }}" width="160" height="160">
+                                        <br/>
                                     <!--   <button class="btn btn-primary mt-4">Promijeni sliku</button> -->
                                 </div>
                             </div>
+                            <div class="custom-file col-md-12 mt-4">
+                        <input type="file" class="custom-file-input" id="slikaParticipanta" name="slikaParticipanta" placeholder="slikaParticipanta" accept="image/png, image/jpeg, image/jpg" value="{{ old('slikaParticipanta') }}">
+                        <label class="custom-file-label" for="slikaParticipanta"> Zamijeni  </label>
+                    </div>
                         </div>
                     </div>
+
                 </div>
                     <div class="form-group col-md-6">
                         <label for="ime-participanta">Ime</label>

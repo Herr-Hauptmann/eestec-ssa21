@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Izjava;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 class IzjavaController extends Controller
 {
     public function getIzjave(Request $request)
     { 
         $polje = $request->input('pretraga');
-        $brIzjava = 3;
+        $brIzjava = 10;
 
         if(!empty($polje)) {
            $izjave = Izjava::where('ime', 'LIKE', "%{$polje}%")
@@ -38,17 +39,31 @@ class IzjavaController extends Controller
             'imeParticipanta' => ['required', 'max:255', 'min:2'],
             'prezimeParticipanta' => ['required', 'max:255', 'min:2'],
             'izjavaParticipanta'=>['required', 'max:65535', 'min:2'],
-           // 'slika' => ['required'],
+            'slikaParticipanta' => ['image','required', 'max:1999'],
         ]);
+
+        if($request->hasFile('slikaParticipanta')) {
+            //get filename with the extension
+            $filenameWithExt = $request->file('slikaParticipanta')->getClientOriginalName();
+            //get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get just extension
+            $extension = $request->file('slikaParticipanta')->getClientOriginalExtension();
+            //creaate filename to store
+            $filenameToStore= $filename.'_'.time().'.'.$extension;
+            // uplad image
+            $path = $request->file('slikaParticipanta')->storeAs('public/izjave', $filenameToStore);
+
+        }else {
+            $filenameToStore = "noimage.jpg";
+        }
 
 
         $izjava = new Izjava();
         $izjava->ime = $request->input('imeParticipanta');
         $izjava->prezime = $request->input('prezimeParticipanta');
         $izjava->tekst = $request->input('izjavaParticipanta');
-        //spasiti i sliku 
-        $izjava->slika = 'https://grand-village.com/wp-content/uploads/2019/03/man-portrait-silhouette.gif';
-        //$izjava->slika = $req->file('slikaParticipanta');
+        $izjava->slika = $filenameToStore;
         $izjava->saveOrFail();
 
          return redirect()->route('admin.izjave.spasavanje')->with('success', 'Uspješno ste dodali novu izjavu!');
@@ -77,8 +92,22 @@ class IzjavaController extends Controller
             'imeParticipanta' => ['required', 'max:255', 'min:2'],
             'prezimeParticipanta' => ['required', 'max:255','min:2'],
             'izjavaParticipanta'=>['required', 'max:65535', 'min:2'],
-           // 'slika' => ['required'],
+            'slikaParticipanta' => ['image','required', 'max:1999'],
         ]);
+
+        if($request->hasFile('slikaParticipanta')) {
+            //get filename with the extension
+            $filenameWithExt = $request->file('slikaParticipanta')->getClientOriginalName();
+            //get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //get just extension
+            $extension = $request->file('slikaParticipanta')->getClientOriginalExtension();
+            //creaate filename to store
+            $filenameToStore= $filename.'_'.time().'.'.$extension;
+            // uplad image
+            $path = $request->file('slikaParticipanta')->storeAs('public/izjave', $filenameToStore);
+
+        }
         //azuriranje slike ???
         $izjava->slika = 'https://i.pinimg.com/originals/34/a6/c5/34a6c57f16c9c440dc479679c7ad2ad0.png';
         //$izjava->slika = $req->file('slikaParticipanta');
@@ -87,7 +116,12 @@ class IzjavaController extends Controller
         $izjava->ime = $request->input('imeParticipanta');
         $izjava->prezime = $request->input('prezimeParticipanta');
         $izjava->tekst = $request->input('izjavaParticipanta');
-     
+        if($request->hasFile('slikaParticipanta')) {
+            $old_photo=$izjava->slika;
+            $izjava->slika = $filenameToStore;
+            Storage::delete('public/izjave/'.$old_photo);
+        }
+
         $izjava->saveOrFail();
         $tekstPoruke = "Uspješno ste ažurirali izjavu participanta {$izjava->ime} {$izjava->prezime}!";
         return redirect()->route('admin.izjave')->with('success', $tekstPoruke);
