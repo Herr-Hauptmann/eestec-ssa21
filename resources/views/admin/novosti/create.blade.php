@@ -32,15 +32,20 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="datum">Datum</label>
-                        <input type="text" class="form-control" id="datum" placeholder="YYYY-MM-DD" name="datum">
+                        <input type="date" class="form-control" id="datum" name="datum">
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="tekst">Tekst</label>
-                        <textarea class="form-control" id="tekst" rows="3" name="tekst"></textarea>
-                    </div>
-                    <div class="custom-file clo-md-12 mt-4">
+                    <div class="custom-file col-md-12 mt-4">
                         <input type="file" class="custom-file-input" id="slika" name="slika">
                         <label class="custom-file-label" for="slika">Umetni sliku</label>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 mt-4">
+                                <div class="card-body">
+                                    <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-5">Spasi novost</button>
@@ -48,4 +53,12 @@
         </div>
     </div>
 </div>
+
+<script src="//cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+</script>
+
 @endsection

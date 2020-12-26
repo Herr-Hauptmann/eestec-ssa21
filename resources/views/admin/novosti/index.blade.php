@@ -25,8 +25,6 @@
                             <th scope="col">#</th>
                             <th scope="col">Naslov</th>
                             <th scope="col">Datum</th>
-                            <th scope="col">Tekst</th>
-                            <th scope="col">Slika</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -35,13 +33,12 @@
                             <tr>
                                 <th scope="row"class="align-middle">{{$loop->iteration+($novosti->currentPage()-1)*$poStranici}}</th>
                                 <td class="align-middle">{{ $novost->naslov }}</td>
-                                <td class="align-middle">{{ $novost->datum }}</td>
-                                @if (strlen($novost->tekst) > 10)
-                                    <td class="align-middle">{{ substr($novost->tekst, 0, 10) }}...</td>
-                                @else
-                                    <td class="align-middle">{{ $novost->tekst }}</td>
-                                @endif
-                                <td class="align-middle">{{ $novost->slika }}</td>
+                                @php
+                                    $obrnutiNizKomponentiDatuma = explode("-", $novost->datum);
+                                    $nizKomponentiDatuma = array_reverse($obrnutiNizKomponentiDatuma);
+                                    $datumZaPrikazati = $nizKomponentiDatuma[0] . "." . $nizKomponentiDatuma[1] . "." . $nizKomponentiDatuma[2];
+                                @endphp
+                                <td class="align-middle">{{ $datumZaPrikazati }}</td>
                                 <td class="align-middle">
                                     <a href="{{ route('novosti.show', $novost->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
                                     <a href="{{ route('novosti.edit', $novost->id) }}" class="btn btn-outline-success btn-sm item">Edit</a>
