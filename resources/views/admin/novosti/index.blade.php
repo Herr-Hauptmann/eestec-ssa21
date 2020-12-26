@@ -40,13 +40,9 @@
                                 @endphp
                                 <td class="align-middle">{{ $datumZaPrikazati }}</td>
                                 <td class="align-middle">
-                                    <a href="{{ route('novosti.show', $novost->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                                    <a href="{{ route('novosti.edit', $novost->id) }}" class="btn btn-outline-success btn-sm item">Edit</a>
-                                    <form method="POST" action="{{ route('novosti.destroy', $novost->id) }}" style="display: inline-block;">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="btn-kontrole btn btn-outline-danger btn-sm item" title="delete" onclick="return confirm(&quot;Da li si siguran da želiš obrisati novost?&quot;)">Delete</button>
-                                    </form>
+                                    <a href="{{ route('novosti.show', $novost->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">Pregled</a>
+                                    <a href="{{ route('novosti.edit', $novost->id) }}" class="btn btn-outline-success btn-sm item">Uredi</a>
+                                    <a href="#myModal" data-href="{{ route('novosti.destroy', $novost->id) }}" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Obriši</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -61,9 +57,23 @@
                         </tr>
                     </tfoot>
                 </table>
+                @if($novosti->isEmpty())
+                    <div>No results found!</div>
+                @endif
             </div>
         </div>
     </div>
 </div>
-@include('admin.brisanje')
+
+@include('admin.novosti.brisanje')
+
+<script>
+window.onload = () => {
+    $('#myModal').on('show.bs.modal', e => {
+        const link = $(e.relatedTarget).data('href');
+        $('#myModal').attr('action', link);
+    });
+}
+</script>
+
 @endsection
