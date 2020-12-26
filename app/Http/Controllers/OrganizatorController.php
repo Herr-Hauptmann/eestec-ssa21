@@ -10,9 +10,10 @@ class OrganizatorController extends Controller
 {
     public function index(Request $request)
     {
-        $poStranici = 15;
+        $poStranici = 5;
+
+        //Pretraga
         $keyword = $request->get('search');
-        
         if (!empty($keyword)) {
             $organizatori = Organizator::
                     where('ime', 'LIKE', "%$keyword%")
@@ -21,6 +22,7 @@ class OrganizatorController extends Controller
                     ->orderBy('updated_at', 'desc')
                     -> paginate($poStranici);
         }
+        //Bez pretrage - ispisi sve
         else 
         {
             $organizatori = Organizator::orderBy('updated_at', 'desc')->paginate($poStranici);
@@ -37,11 +39,11 @@ class OrganizatorController extends Controller
     public function store(Request $request)
     {
         //Validacija podataka
-        $request -> validate(['ime' => 'required | min:3', 
-                                      'prezime'=> 'required | min:3',
+        $request -> validate(['ime' => 'required | min:3 | max:255', 
+                                      'prezime'=> 'required | min:3 | max:255',
                                       'slika' => 'nullable | image | max:1999',
-                                      'telefon' => 'required | min:12 | max:13 | starts_with:+387',
-                                      'mail' => 'required | email:rfc,dns']);
+                                      'telefon' => 'required | min:12 | max:13 | starts_with:+387 | max:255',
+                                      'mail' => 'required | email:rfc,dns | max:255']);
 
         $podaci = $request->all();
         Organizator::create($podaci);
