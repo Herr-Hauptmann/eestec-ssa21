@@ -38,7 +38,7 @@
                 <tbody >
                     @foreach ($izjave as $izjava) 
                     <tr>
-                        <th scope="row">{{ $loop->index + 1 }}</th>
+                        <th scope="row">{{($izjave->currentpage()-1) * $izjave->perpage() + $loop->index + 1 }}</th>
                         <td>{{ $izjava->ime }}</td>
                         <td>{{ $izjava->prezime }}</td>
                         <td class="text-truncate"  style="max-width: 540px; display: block;" >{{ $izjava->tekst }}</td>
