@@ -12,7 +12,7 @@
                 <p>Novosti</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('novosti.create') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novost</a>
+                <a href="{{ route('novosti.create') }}" class="btn btn-sm btn-outline-success col-12 col-sm-3 d-inline-flex align-items-center justify-content-center">Dodaj novost</a>
                 <form class="form-inline ml-auto mt-2 mt-lg-0" method="GET" action="{{ url()->current() }}" role="search">
                     <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search...." value="{{ request('search') }}"aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -58,7 +58,7 @@
                     </tfoot>
                 </table>
                 @if($novosti->isEmpty())
-                    <div>No results found!</div>
+                    <div>Nema novosti</div>
                 @endif
             </div>
         </div>

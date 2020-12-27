@@ -25,12 +25,7 @@
                     <div class="row mb-3 justify-content-center">
                     <div class="card mb-3">
                                 <div class="shadow">
-                                    {{--<figure class="figure" style="width: 400px; height: 400px;">
-                                        <img src="https://media.studomat.ba/2020/03/IMG_0087.jpg" 
-                                            class="figure-img img-fluid" alt="Slika uz novost">
-                                        <figcaption class="figure-caption">{{ $novost->naslov }}</figcaption>
-                                    </figure>--}}
-                                    <img src="https://media.studomat.ba/2020/03/IMG_0087.jpg" 
+                                    <img src="/storage/novosti/img/{{$novost->slika}}" 
                                             class="figure-img img-fluid" alt="Slika uz novost"
                                             style="max-width: 100%; width: 450px; height: 350px; margin: auto;">
                                 </div>
@@ -62,7 +57,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="id_tekst"><strong>Tekst novosti</strong></label>
-                                                    <div id="id_tekst" class="form-control h-auto">{!! $novost->tekst !!}</div>
+                                                    <div id="id_tekst" class="form-control h-auto text-left">{!! $novost->tekst !!}</div>
                                                 </div>
                                             </div>
                                         </div>

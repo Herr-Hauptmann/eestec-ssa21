@@ -6,6 +6,7 @@ use App\Models\Novost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class NovostController extends Controller
 {
@@ -53,20 +54,37 @@ class NovostController extends Controller
      */
     public function store(Request $request)
     {
-        $slika = $request->file('slika');
         //Validacija podataka
         $request -> validate([
             'naslov' => 'required',
             'wysiwyg-editor'=> 'required',
-            'slika' => 'nullable | max:1999',
+            'slika' => 'image|required|max:1999',
             'datum' => 'required'
         ]);
+
+        if ($request->hasFile('slika')) {
+            // Get filename with the extension
+            $filenameWithExtension = $request->file('slika')->getClientOriginalName();
+            // Get just the filename
+            $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            // Get just the extension
+            $extension = $request->file('slika')->getClientOriginalExtension();
+            // Create filename to store
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload image
+            error_log($filenameToStore);
+            $path = $request->file('slika')->storeAs('public/novosti/img', $filenameToStore);
+        }
+        else {
+            error_log("nesto drugo");
+            $filenameToStore = "noimage.jpg";
+        }
         
         $novost = new Novost();
         $novost->naslov = $request->input('naslov');
         $novost->tekst = $request->input('wysiwyg-editor');
         $novost->datum = $request->input('datum');
-        $novost->slika = "https://media.studomat.ba/2020/03/IMG_0087.jpg";
+        $novost->slika = $filenameToStore;
 
         $novost->saveOrFail();
 
@@ -111,23 +129,41 @@ class NovostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $novost = Novost::findOrFail($id);
-        
-        $slika = $request->file('slika');
-        
-        $request -> validate(['naslov' => 'required', 
-                            'wysiwyg-editor'=> 'required',
-                            'slika' => 'nullable | max:1999',
-                            'datum' => 'required']);
+        //Validacija podataka
+        $request -> validate([
+            'naslov' => 'required',
+            'wysiwyg-editor'=> 'required',
+            'slika' => 'image|nullable|max:1999',
+            'datum' => 'required'
+        ]);
 
+        if ($request->hasFile('slika')) {
+            // Get filename with the extension
+            $filenameWithExtension = $request->file('slika')->getClientOriginalName();
+            // Get just the filename
+            $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            // Get just the extension
+            $extension = $request->file('slika')->getClientOriginalExtension();
+            // Create filename to store
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload image
+            error_log($filenameToStore);
+            $path = $request->file('slika')->storeAs('public/novosti/img', $filenameToStore);
+        }
+
+        $novost = Novost::findOrFail($id);
         $novost->naslov = $request->input('naslov');
         $novost->tekst = $request->input('wysiwyg-editor');
         $novost->datum = $request->input('datum');
-        $novost->slika = "https://media.studomat.ba/2020/03/IMG_0087.jpg";
+        if ($request->hasFile('slika')) {
+            $old_photo=$novost->slika;
+            $novost->slika = $filenameToStore;
+            Storage::delete('public/novosti/img/'.$old_photo);
+        }
 
         $novost->saveOrFail();
 
-        return redirect('admin/novosti')->with('flash_message', 'Uspjesno ste editovali novost!');
+        return redirect('admin/novosti')->with('flash_message', 'Uspjesno ste azurirali novost!');
     }
 
     /**
@@ -138,6 +174,11 @@ class NovostController extends Controller
      */
     public function destroy($id)
     {
+        $novost = Novost::findOrFail($id);
+        if($novost->slika != 'noimage.jpg') {
+            // Delete image
+            Storage::delete('public/novosti/img/'.$novost->slika);
+        }
         Novost::destroy($id);
         return redirect('admin/novosti')->with('flash_message', 'Uspjesno ste izbrisali novost!');
     }

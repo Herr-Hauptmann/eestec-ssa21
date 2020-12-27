@@ -23,7 +23,7 @@
                     </ul>
                 </div>
             @endif
-            <form class="m-5" action="{{ route('novosti.store') }}" method="POST">
+            <form class="m-5" action="{{ route('novosti.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -35,7 +35,8 @@
                         <input type="date" class="form-control" id="datum" name="datum">
                     </div>
                     <div class="custom-file col-md-12 mt-4">
-                        <input type="file" class="custom-file-input" id="slika" name="slika">
+                        <input type="file" class="custom-file-input" id="slika" name="slika" 
+                            accept="image/png, image/jpeg, image/jpg">
                         <label class="custom-file-label" for="slika">Umetni sliku</label>
                     </div>
                     <div class="container">

@@ -15,9 +15,9 @@ class CreateNovostTable extends Migration
     {
         Schema::create('novost', function (Blueprint $table) {
             $table->id();
-            $table->string('naslov');
-            $table->string('tekst');
-            $table->string('slika')->default("nemaslike.jpg");
+            $table->text('naslov');
+            $table->text('tekst');
+            $table->text('slika');
             $table->date('datum');
             $table->timestamps();
         });
