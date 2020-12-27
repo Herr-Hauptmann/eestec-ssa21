@@ -13,11 +13,24 @@
             </div>
             <div class="row m-2 p-1">
 
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form method="get" action="{{ route('admin.rang') }}" class="form-inline ml-auto mt-2 mt-lg-0">
+                    <input name="pretraga" class="form-control mr-sm-2" type="search" placeholder="Ime i/ili prezime" aria-label="Search"  data-toggle="tooltip" data-placement="left" title="Nakon pretrage, za vraćanje na početnu listu pretražite sa praznim search box-om.">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Traži</button>
                 </form>
+
             </div>
+            <div class="col-12 col-sm-3" aria-controls="dataTable">
+                        <select  name = "edicija"  class="form-control form-control-sm custom-select custom-select-sm">
+                        @foreach ($edicije as $edicija)
+                            <option value="{{$edicija->id}}"
+                            @if ($edicija->id == $selektovan)
+                                selected="selected"
+                            @endif
+                            > {{$edicija->naziv}}</option>
+                        @endforeach  
+                        </select>
+                    </div>
+
             <table class="table teble-responsive table-hover mt-5">
                 <thead>
                     <tr>
@@ -30,14 +43,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 10; $i++) <tr>
-                        <th scope="row">1</th>
-                        <td>Samra</td>
-                        <td>Pušina</td>
-                        <td>DA</td>
-                        <td>50</td>
+                    @foreach ($rang as $kandidat)  <tr>
+                        <th scope="row">{{ $loop->index + 1 }}</th>
+                        <td>{{ $kandidat->ime }}</td>
+                        <td>{{ $kandidat->prezime }}</td>
+                        <td>{{ $kandidat->zvjezdica }}</td>
+                        <td>{{ $kandidat->ukupniBodovi }}</td>
                         </tr>
-                        @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
