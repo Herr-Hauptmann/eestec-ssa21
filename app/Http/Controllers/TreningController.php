@@ -9,17 +9,19 @@ class TreningController extends Controller
 {
     public function getTreninzi(Request $req)
     {
-        $search = $req->input('search');
+        $poStranici = 10;
 
-        if(isset($search)) {
-            $treninzi = Trening::where('naziv', 'LIKE', "%{$search}%")->get();
-        } else {
-            $treninzi = Trening::all();
+        $search = $req->input('search');
+        if (!empty($search)) {
+            $treninzi = Trening::
+                    where('naziv', 'LIKE', "%$search%")
+                    ->orWhere('opis', 'LIKE', "%$search%")
+                    -> paginate($poStranici);
+        } else  {
+            $treninzi = Trening::paginate($poStranici);
         }
 
-        return view('admin.treninzi.lista', [
-            'treninzi' => $treninzi,
-        ]);
+        return view('admin.treninzi.lista', compact('treninzi', 'poStranici'));
     }
 
     public function dodajTrening()

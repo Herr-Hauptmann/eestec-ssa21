@@ -17,7 +17,8 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-            <table class="table table-responsive table-hover mt-5">
+            <div class="table-responsive"></div>
+            <table class="table table-hover mt-5">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -29,9 +30,9 @@
                 <tbody>
                     @foreach($treninzi as $trening) 
                     <tr>
-                        <th scope="row">{{ $loop->index + 1 }}</th>
+                        <th scope="row">{{ $loop->iteration + ($treninzi->currentPage() - 1) * $poStranici }}</th>
                         <td>{{ $trening->naziv }}</td>
-                        <td class=".text-truncate" >{{ $trening->opis }}</td>
+                        <td class="text-truncate" >{{ $trening->opis }}</td>
                         <td>
                             <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
                             <a href="{{ route('admin.treninzi.detalji', $trening->id) }}" class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
@@ -45,6 +46,8 @@
             @if($treninzi->isEmpty())
                 <div>No results found!</div>
             @endif
+            <div class="text-center">{{ $treninzi->links() }}</div>
+            </div>
         </div>
     </div>
 </div>
