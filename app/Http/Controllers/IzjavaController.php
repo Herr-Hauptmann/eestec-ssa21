@@ -71,6 +71,10 @@ class IzjavaController extends Controller
 
     public function obrisiIzjavu($id){
         $izjava = Izjava::findOrFail($id);
+        if($izjava->slika != 'noimage.jpg') {
+            Storage::delete('public/izjave/'.$izjava->slika);
+        }
+
         $izjava->delete();
         return redirect()->route('admin.izjave')->with('success', 'Uspješno ste obrisali izjavu!');
     }
