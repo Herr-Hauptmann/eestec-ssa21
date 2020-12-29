@@ -29,6 +29,15 @@ class PrijavaUcesnikaController extends Controller
 
     public function getRang(Request $request)
     {
+        if (request()->ajax()) {
+
+            $rangLista = Prijava::orderBy('ukupniBodovi', 'desc')->orderBy('zvjezdica', 'asc')
+            ->where('idEdicije','=', $request->idEdicije);
+            
+            return response()->json(['lista' => $rangLista
+                                    ]);
+        }
+
         $polje = $request->input('pretraga');
         $brKandidata = 10;
         
@@ -52,5 +61,5 @@ class PrijavaUcesnikaController extends Controller
         }
         
         return view('admin.rang.lista', ['rang'=>$rang, 'edicije'=>$edicije, 'selektovan'=>$najnovijaEdicija->id]);
-    }
+    }    
 }

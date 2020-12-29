@@ -20,9 +20,9 @@
 
             </div>
             <div class="col-12 col-sm-3" aria-controls="dataTable">
-                        <select  name = "edicija"  class="form-control form-control-sm custom-select custom-select-sm">
+                        <select  name = "edicija"  class="edicija-dropdown form-control form-control-sm custom-select custom-select-sm">
                         @foreach ($edicije as $edicija)
-                            <option value="{{$edicija->id}}"
+                            <option class="edicija-dropdown-item" method="post" action="{{ route('admin.rang') }}" value="{{$edicija->id}}"
                             @if ($edicija->id == $selektovan)
                                 selected="selected"
                             @endif
@@ -31,7 +31,7 @@
                         </select>
                     </div>
 
-            <table class="table teble-responsive table-hover mt-5">
+            <table id="rang-tabela" class="table teble-responsive table-hover mt-5">
                 <thead>
                     <tr>
                         <th scope="col">Rang</th>
@@ -42,7 +42,7 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach ($rang as $kandidat)  <tr>
                         <th scope="row">{{ $loop->index + 1 }}</th>
                         <td>{{ $kandidat->ime }}</td>
