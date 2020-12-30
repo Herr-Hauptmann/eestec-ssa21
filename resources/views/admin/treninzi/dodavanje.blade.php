@@ -15,7 +15,7 @@
                 <a href="{{ route('admin.treninzi') }}"
                     class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na treninge</a>
             </div>
-            <form class="m-5" action="{{ route('admin.treninzi.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.treninzi.spasavanje') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-6">

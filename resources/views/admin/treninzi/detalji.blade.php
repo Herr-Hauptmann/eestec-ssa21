@@ -15,10 +15,10 @@
             </div>
             <div class="container-fluid">
                 <div class="row mb-3 justify-content-center">
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                         <div class="card mb-3">
                             <div class="card-body text-center shadow">
-                                <img class="mb-3 mt-4" src="{{ asset('img/rasim.png') }}" width="160" height="160"/>
+                                <img class="figure-img img-fluid mb-3 mt-4" src="{{ Storage::url('public/img/treninzi/' . $trening->slika) }}"/>
                             </div>
                         </div>
                     </div>

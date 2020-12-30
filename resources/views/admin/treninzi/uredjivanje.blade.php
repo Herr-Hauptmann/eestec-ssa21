@@ -14,7 +14,7 @@
             <div class="row m-2 p-1">
                 <a href="{{ route('admin.treninzi') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na treninge</a>
             </div>
-            <form class="m-5" action="{{ route('admin.treninzi.azuriranje', $trening->id) }}" method="POST">
+            <form class="m-5" action="{{ route('admin.treninzi.azuriranje', $trening->id) }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -38,7 +38,7 @@
                         @endif
                     </div>
                     <div class="custom-file col-md-6 mt-4">
-                        <input type="file" class="custom-file-input" id="slika">
+                        <input type="file" class="custom-file-input" id="slika" name="slika">
                         <label class="custom-file-label" for="slika" name="slika">Umetni sliku</label>
                     </div>
                 </div>
