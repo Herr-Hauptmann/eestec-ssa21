@@ -4,22 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medij;
+use Illuminate\Support\Facades\Storage;
 
 class MedijController extends Controller
 {
+    private $img_path = 'public/img/mediji';
+
     public function getMediji(Request $request)
     {
-        $search = $request->input("search");
-        if(isset($search)) {
-            $mediji = Medij::where('naziv', 'LIKE', "%{$search}%")->get();
-        } else {
-            $mediji = Medij::all();
+        $poStranici = 10;
+
+        $search = $request->input('search');
+        if (!empty($search)) {
+            $mediji = Medij::
+                    where('naziv', 'LIKE', "%$search%")
+                    -> paginate($poStranici);
+        } else  {
+            $mediji = Medij::orderBy('updated_at', 'desc')->paginate($poStranici);
         }
 
-        return view('admin.mediji.lista', [
-            'mediji' => $mediji,
-        ]);
-
+        return view('admin.mediji.lista', compact('mediji', 'poStranici'));
     }
 
     public function showMedij($id) {
@@ -33,6 +37,9 @@ class MedijController extends Controller
     public function obrisiMedij($id) {
         $medij = Medij::findOrFail($id);
         $medij->delete();
+        if($medij->slika != 'noimage.jpg') {
+            Storage::delete($this->img_path . $medij->slika);
+        }
         return redirect()->route('admin.mediji');
 
     }
@@ -48,18 +55,33 @@ class MedijController extends Controller
     public function spasiPromjene(Request $req, $id)
     {
         $medij = Medij::findOrFail($id);
-
-        $slika = $req->file('slika');
-
+        
         $validatedData = $req->validate([
-            'naziv' => ['max:255'],
-            'opis' => ['max:255'],
-            'slika' => [],
+            'naziv' => ['required', 'min:3', 'max:255'],
+            'link' => ['required', 'min:3', 'max:255'],
+            'slika' => ['nullable', 'image', 'max:1999'],
         ]);
+
+        if ($req->hasFile('slika')) {
+            // Get filename with the extension
+            $filenameWithExtension = $req->file('slika')->getClientOriginalName();
+            // Get just the filename
+            $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            // Get just the extension
+            $extension = $req->file('slika')->getClientOriginalExtension();
+            // Create filename to store
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload image
+            $path = $req->file('slika')->storeAs($this->img_path, $filenameToStore);
+        }
 
         $medij->naziv = $req->input('naziv');
         $medij->link = $req->input('link');
-        $medij->slika = "https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png";
+        if ($req->hasFile('slika')) {
+            $old_photo = $medij->slika;
+            $medij->slika = $filenameToStore;
+            Storage::delete($this->img_path . $old_photo);
+        }
 
         $medij->saveOrFail();
 
@@ -73,17 +95,34 @@ class MedijController extends Controller
 
     public function spasiMedij(Request $request)
     {
-        $imageUrl = "https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/000-404.png";
-        $item = new Medij();
-        $item->naziv = $request->input("naziv");
-        $item->link = $request->input('link');
-        $item->slika = $imageUrl; // $request->file('slika');
-        $item->saveOrFail();
+        $validatedData = $request->validate([
+            'naziv' => ['required', 'min:3', 'max:255'],
+            'link' => ['required', 'min:3', 'max:255'],
+            'slika' => ['required', 'image', 'max:1999'],
+        ]);
 
-        $mediji = Medij::all();
-        $data = [
-            "mediji" => $mediji
-        ];
-        return view('admin.mediji.lista', $data);
+        if ($request->hasFile('slika')) {
+            // Get filename with the extension
+            $filenameWithExtension = $request->file('slika')->getClientOriginalName();
+            // Get just the filename
+            $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
+            // Get just the extension
+            $extension = $request->file('slika')->getClientOriginalExtension();
+            // Create filename to store
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload image
+            $path = $request->file('slika')->storeAs($this->img_path, $filenameToStore);
+        } else {
+            $filenameToStore = "noimage.jpg";
+        }
+
+        $medij = new Medij();
+        $medij->naziv = $request->input('naziv');
+        $medij->link = $request->input('link');
+        $medij->slika = $filenameToStore;
+
+        $medij->saveOrFail();
+
+        return redirect()->route('admin.mediji');
     }
 }
