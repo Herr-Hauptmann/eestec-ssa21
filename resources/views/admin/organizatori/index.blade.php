@@ -53,23 +53,15 @@
                                     <td class="align-middle">{{ $organizator->mail }}</td>
                                     <td class="align-middle">
                                         <div class="row">
-                                            <a class="btn-kontrole btn btn-outline-info btn-sm item btn-block mr-1"
-                                                href="organizatori/{{ $organizator->id }}">View</a>
+                                            <a class="btn-kontrole btn btn-outline-info btn-sm item btn-block mr-1 mb-1"
+                                                href="organizatori/{{ $organizator->id }}">Pregledaj</a>
                                         </div>
                                         <div class="row">
-                                            <a class="btn btn-outline-success btn-sm item btn-block mr-1"
-                                                href="organizatori/{{ $organizator->id }}/edit">Edit</a>
+                                            <a class="btn btn-outline-success btn-sm item btn-block mr-1 mb-1"
+                                                href="organizatori/{{ $organizator->id }}/edit">Uredi</a>
                                         </div>
                                         <div class="row">
-                                            <form method="POST"
-                                                action="{{ route('organizatori.destroy', $organizator->id) }}">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit"
-                                                    class="btn-kontrole btn btn-outline-danger btn-sm item btn-block mr-2"
-                                                    title="delete"
-                                                    onclick="return confirm(&quot;Da li si siguran da želiš obrisati organizatora?&quot;)">Delete</button>
-                                            </form>
+                                            <a href="#myModal" data-toggle="modal" data-route="{{ route('organizatori.destroy', $organizator->id) }}" class="btn btn-outline-danger btn-sm item btn-block mr-1">Briši</a>
                                         </div>
                                     </td>
                             @endforeach
@@ -88,4 +80,5 @@
             </div>
         </div>
     </div>
+    @include('admin.brisanje')
 @endsection

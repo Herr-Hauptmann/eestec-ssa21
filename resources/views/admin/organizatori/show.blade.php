@@ -13,17 +13,6 @@
                 <div class="row m-2 p-1">
                     <a href="{{ route('organizatori.index') }}"
                         class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na organizatore</a>
-                    <a href="/admin/organizatori/{{ $organizator->id }}/edit"
-                        class="btn btn-sm btn-outline-warning col-12 col-sm-3 ml-auto mt-2 mt-lg-0">Uredi ovog
-                        organizatora</a>
-                    <form method="POST" action="{{ route('organizatori.destroy', $organizator->id) }}">
-                        {{ method_field('DELETE') }}
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn-kontrole btn btn-outline-danger btn-sm item btn-block mr-2 ml-2"
-                            title="delete"
-                            onclick="return confirm(&quot;Da li si siguran da želiš obrisati ovog organizatora?&quot;)">Obrisi
-                            ovog organizatora</button>
-                    </form>
                 </div>
                 <div class="container-fluid">
                     <div class="row mb-3 justify-content-center">
