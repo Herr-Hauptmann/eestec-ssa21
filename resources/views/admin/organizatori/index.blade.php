@@ -13,13 +13,14 @@
                     <a href="{{ route('organizatori.create') }}"
                         class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novog organizatora</a>
                     <div class="col-12 col-sm-3" aria-controls="dataTable">
-                        <select class="form-control form-control-sm custom-select custom-select-sm">
-                            <option value="5" selected="">5</option>
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
+                        <form action="{{ url()->current() }}">
+                            <select onchange="this.form.submit()" class="form-control form-control-sm custom-select custom-select-sm" name="paginacija"> 
+                                <option value="10"  @if($poStranici == 10)  {{"selected"}} @endif>10</option>
+                                <option value="25"  @if($poStranici == 25)  {{"selected"}} @endif>25</option>
+                                <option value="50"  @if($poStranici == 50)  {{"selected"}} @endif>50</option>
+                                <option value="100" @if($poStranici == 100) {{"selected"}} @endif>100</option>
+                            </select>
+                        </form>   
                     </div>
                     <form class="form-inline ml-auto mt-2 mt-lg-0" method="GET" action="{{ url()->current() }}"
                         role="search">

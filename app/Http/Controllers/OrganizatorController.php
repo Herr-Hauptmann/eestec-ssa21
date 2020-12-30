@@ -5,12 +5,13 @@ use App\Models\Organizator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
+$poStranici = 10;
 class OrganizatorController extends Controller
 {
+    
     public function index(Request $request)
     {
-        $poStranici = 5;
+        $poStranici = $request->get('paginacija');
 
         //Pretraga
         $keyword = $request->get('search');
