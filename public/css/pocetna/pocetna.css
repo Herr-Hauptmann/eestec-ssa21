@@ -75,3 +75,7 @@ body {
 .btn-prijava:checked {
     background-color: #54049A
 }
+
+.pocetna-datum-odrzavanja {
+    font-size: 2.5vw;
+}

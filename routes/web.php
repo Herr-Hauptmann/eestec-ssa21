@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/', [HomeController::class, 'getEdicija']);
+
+Route::get('/ajax-request', [HomeController::class, 'create']);
+Route::post('/ajax-request', [HomeController::class, 'store']);
 
 Route::get('/prijava', [PrijavaRegistracijaController::class, 'prijava'])->name('prijava');
 Route::get('/registracija', [PrijavaRegistracijaController::class, 'registracija'])->name('registracija');

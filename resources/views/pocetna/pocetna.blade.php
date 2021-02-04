@@ -1,24 +1,25 @@
 <div class="container-fluid p-0 overflow-hidden">
 
     <div class="row mt-70 ml-3 ml-md-4 ml-xl-5 col-4 col-xl-6 pl-0">
-        <p class="pocetna-tekst pocetna-naslov">Soft Skills Academy Sarajevo LITE - Winter 2020</p>
+        <p class="pocetna-tekst pocetna-naslov">{{ $trenutnaEdicija->naziv }}</p>
     </div>
 
     <div class="ml-3 ml-md-4 ml-xl-5 col-lg-6 col-md-6 col-sm-5 col-4 mt-md-30 tekst-pocetna">
         <div class="row">
-            <p class="preostalo-vrijeme">12d : 04h : 30min</p>
+            <p class="preostalo-vrijeme"></p>
         </div>
         <div class="row">
             <p class="pocetna-tekst pocetna-motivacija">Budi korak ispred!</p>
         </div>
         <div class="row">
-            <p class="naslovna-tekst3">06.-08. Mart 2020 godine</p>
+            <p class="naslovna-tekst3 pocetna-datum-odrzavanja"></p>
         </div>
         <div class="row">
             <p class="pocetna-tekst pocetna-motivacija">Never give up!</p>
         </div>
     </div>
 
+    
     <button type="button" class="btn btn-lg btn-prijava">Prijavi se</button>
     
 </div>
@@ -219,3 +220,4 @@
         </g>
     </svg>
 </div>
+

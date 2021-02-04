@@ -36,18 +36,19 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Edicije
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Edicija1</a>
-          <a class="dropdown-item" href="#">Edicija2</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          @foreach ($edicije as $edicija)
+          <li><a class="dropdown-item" href="#">{{ $edicija->naziv }}</a></li>
+          @endforeach
+        </ul>
       </li>
 
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="#drugi-o-nama">Drugi o nama</a>
       </li>
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="#kontakt">Kontakt</a>
       </li>
       <li class="nav-item">
@@ -56,3 +57,4 @@
     </ul>
   </div>
 </nav>
+

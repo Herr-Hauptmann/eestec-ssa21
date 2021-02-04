@@ -9,7 +9,7 @@ class Edicija extends Model
 {
     protected $table = 'edicija';
 
-    protected $fillable = ['naziv', 'logo', 'datum_odrzavanja', 'mjesto_odrzavanja', 'datum_otvaranja_prijava', 'datum_zatvaranja_prijava', 'broj_ucesnika'];
+    protected $fillable = ['naziv', 'logo', 'datum_pocetka', 'datum_kraja','mjesto_odrzavanja', 'datum_otvaranja_prijava', 'datum_zatvaranja_prijava', 'broj_ucesnika'];
 
     public function organizatori()
     {

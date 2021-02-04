@@ -9,5 +9,5 @@ class Postignuce extends Model
 {
     protected $table = 'postignuce';
 
-    protected $fillable = ['naziv'];
+    protected $fillable = ['naziv','broj'];
 }

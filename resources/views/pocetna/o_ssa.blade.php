@@ -162,7 +162,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title naslov-onama-kartica pt-4">Šta je Soft Skills Academy Sarajevo?</h5>
-                    <p class="card-text tekst-onama-kartica pt-5">Besplatna trodnevna radionica ličnih i profesionalnih vještina za studente svih fakulteta u Sarajevu, koja podstiče studente na razvoj neformalnih vještina neophodnih za zapošljavanje i uspješnu karijeru, ali i za izazove modernog života, koje tradicionalan način studiranja ne može obezbijediti.
+                    <p class="card-text tekst-onama-kartica pt-5">Besplatna višednevna radionica ličnih i profesionalnih vještina za studente svih fakulteta u Sarajevu, koja podstiče studente na razvoj neformalnih vještina neophodnih za zapošljavanje i uspješnu karijeru, ali i za izazove modernog života, koje tradicionalan način studiranja ne može obezbijediti.
                     </p>
                 </div>
             </div>
@@ -180,7 +180,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title naslov-onama-kartica pt-4">Ko može učestvovati na Soft Skills Academy Sarajevo?</h5>
-                    <p class="card-text tekst-onama-kartica pt-4">Priliku za učešće na ovoj radionici ima 40 ambicioznih studenata koji su se istakli svojom motivacijom za učešće, ali i u radu u nevladinim organizacijama.</p>
+                    <p class="card-text tekst-onama-kartica ssa-ko pt-4"></p>
                 </div>
             </div>
         </div>
@@ -269,8 +269,8 @@
                             Rok za prijave
                         </div>
                     </div>
-                    <div class="row tekst-informacije m-2">
-                        Prijave traju do 16.02.2020. godine
+                    <div class="row tekst-informacije ssa-rok-prijava m-2">
+                       
                     </div>
                 </div>
                 <div class="col-md-12 col-6 pl-4 pl-md-3">
@@ -282,8 +282,8 @@
                         </div>
                     </div>
 
-                    <div class="row tekst-informacije m-2">
-                        SSA iza sebe ima sedam uspješnih edicija, mnoštvo zadovoljnih participanata i veliki broj zadovoljnih saradnika
+                    <div class="row tekst-informacije ssa-broj-edicija m-2">
+                        
                     </div>
                 </div>
             </div>
@@ -297,8 +297,8 @@
                     Gdje?
                 </div>
             </div>
-            <div class="row tekst-informacije m-2">
-                tershouse, Kolodvorska 5, Sarajevo
+            <div class="row tekst-informacije ssa-mjesto-odrzavanja m-2">
+                
             </div>
             <div class="row pt-5">
 
@@ -308,7 +308,7 @@
                 </div>
             </div>
             <div class="row tekst-informacije m-2">
-                Treninge drže certificirani EESTEC soft skills treneri iz svih dijelova Evrope
+                Treninge drže certificirani EESTEC soft skills treneri iz svih dijelova Evrope.
             </div>
         </div>
         <!-- Treci red informacija -->
@@ -320,8 +320,8 @@
                     Kada?
                 </div>
             </div>
-            <div class="row tekst-informacije m-2">
-                Od 6. do 8. marta 2020. godine
+            <div class="row tekst-informacije ssa-kada-se-odrzava m-2">
+                
             </div>
             <div class="row pt-5">
 
@@ -331,7 +331,7 @@
                 </div>
             </div>
             <div class="row tekst-informacije m-2">
-                Apsolutno besplatno, dovoljno je da se naoružate osmijehom i dobrim raspoloženjem
+                Apsolutno besplatno, dovoljno je da se naoružate osmijehom i dobrim raspoloženjem.
             </div>
         </div>
 

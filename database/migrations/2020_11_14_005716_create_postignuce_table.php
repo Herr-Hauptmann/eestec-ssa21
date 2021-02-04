@@ -16,6 +16,7 @@ class CreatePostignuceTable extends Migration
         Schema::create('postignuce', function (Blueprint $table) {
             $table->id();
             $table->string('naziv');
+            $table->integer('broj');
             $table->timestamps();
         });
     }
