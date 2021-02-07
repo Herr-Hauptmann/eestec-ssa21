@@ -34,34 +34,40 @@ Route::get('/prijava', [PrijavaRegistracijaController::class, 'prijava'])->name(
 Route::get('/registracija', [PrijavaRegistracijaController::class, 'registracija'])->name('registracija');
 
 
-Route::get('/admin', [EdicijaController::class, 'getEdicije'])->name('admin');
-Route::post('/admin', [EdicijaController::class, 'getEdicije'])->name('admin');
+Route::get('/admin', [EdicijaController::class, 'index'])->name('admin');
+Route::post('/admin', [EdicijaController::class, 'index'])->name('admin');
 
 /* Rute za pregled liste edicija, dodavanje edicije, pregled, uređivanje i brisanje edicije*/
-Route::get('/admin/edicije', [EdicijaController::class, 'getEdicije'])->name('admin.edicije');
-Route::get('/admin/edicije/dodavanje', [EdicijaController::class, 'dodajEdiciju'])->name('admin.edicije.dodavanje');
-Route::post('/admin/edicije', [EdicijaController::class, 'spasiEdiciju'])->name('admin.edicije.spasavanje');
+Route::prefix('admin/edicije')->group(function() {
+    Route::get('/', [EdicijaController::class, 'index'])->name('admin.editions');
+    Route::get('/dodavanje', [EdicijaController::class, 'create'])->name('admin.edition.create');
+    Route::post('/', [EdicijaController::class, 'store'])->name('admin.edition.store');
+    Route::get('/{edition}', [EdicijaController::class, 'show'])->name('admin.edition.show');
+    Route::get('/izmjeni/{edition}', [EdicijaController::class, 'edit'])->name('admin.edition.edit');
+    Route::post('/izmjeni/{edition}', [EdicijaController::class, 'update'])->name('admin.edition.update');
+    Route::delete('/izbrisi/{edition}', [EdicijaController::class, 'destroy'])->name('admin.edition.destroy');
+});
 
 
 /* Rute za pregled liste organizatora, dodavanje organizatora, pregled, uređivanje i brisanje organizatora*/
-Route::get('/admin/organizatori', [OrganizatorController::class, 'getOrganizatori'])->name('admin.organizatori');
-Route::get('/admin/organizatori/dodavanje', [OrganizatorController::class, 'dodajOrganizatora'])->name('admin.organizatori.dodavanje');
-Route::post('/admin/organizatori', [OrganizatorController::class, 'spasiOrganizatora'])->name('admin.organizatori.spasavanje');
+Route::Resource('/admin/organizatori', OrganizatorController::class);
 
 /* Rute za pregled liste uloga, dodavanje uloge, pregled, uređivanje i brisanje uloga*/
-Route::get('/admin/pozicije', [PozicijaController::class, 'getPozicije'])->name('admin.pozicije');
-Route::get('/admin/pozicije/dodavanje', [PozicijaController::class, 'dodajPoziciju'])->name('admin.pozicije.dodavanje');
-Route::post('/admin/pozicije', [PozicijaController::class, 'spasiPoziciju'])->name('admin.pozicije.spasavanje');
+Route::resource('/admin/pozicije', PozicijaController::class);
+Route::get('/pozicije/search', [PozicijaController::class, 'search'])->name('admin.pozicije.search');
 
 /* Rute za pregled liste trenera, dodavanje trenera, pregled, uređivanje i brisanje trenera*/
-Route::get('/admin/treneri', [TrenerController::class, 'getTreneri'])->name('admin.treneri');
-Route::get('/admin/treneri/dodavanje', [TrenerController::class, 'dodajTrenera'])->name('admin.treneri.dodavanje');
-Route::post('/admin/treneri', [TrenerController::class, 'spasiTrenera'])->name('admin.treneri.spasavanje');
+Route::resource('/admin/treneri', TrenerController::class);
+Route::get('/treneri/search', [TrenerController::class, 'search'])->name('admin.treneri.search');
 
 /* Rute za pregled liste treninga, dodavanje treninga, pregled, uređivanje i brisanje treninga*/
 Route::get('/admin/treninzi', [TreningController::class, 'getTreninzi'])->name('admin.treninzi');
 Route::get('/admin/treninzi/dodavanje', [TreningController::class, 'dodajTrening'])->name('admin.treninzi.dodavanje');
 Route::post('/admin/treninzi', [TreningController::class, 'spasiTrening'])->name('admin.treninzi.spasavanje');
+Route::delete('/admin/treninzi/{id}', [TreningController::class, 'obrisiTrening'])->name('admin.treninzi.obrisi');
+Route::get('/admin/treninzi/uredjivanje/{id}', [TreningController::class, 'uredjivanje'])->name('admin.treninzi.uredjivanje');
+Route::post('/admin/treninzi/uredjivanje/{id}', [TreningController::class, 'spasiPromjene'])->name('admin.treninzi.azuriranje');
+Route::get('/admin/treninzi/{id}', [TreningController::class, 'showTrening'])->name('admin.treninzi.detalji');
 
 /* Rute za pregled liste medija, dodavanje medija, pregled, uređivanje i brisanje kategorije*/
 Route::get('/admin/kategorije', [KategorijaController::class, 'getKategorije'])->name('admin.kategorije');
@@ -72,11 +78,15 @@ Route::post('/admin/kategorije', [KategorijaController::class, 'spasiKategoriju'
 Route::get('/admin/mediji', [MedijController::class, 'getMediji'])->name('admin.mediji');
 Route::get('/admin/mediji/dodavanje', [MedijController::class, 'dodajMedij'])->name('admin.mediji.dodavanje');
 Route::post('/admin/mediji', [MedijController::class, 'spasiMedij'])->name('admin.mediji.spasavanje');
+Route::get('/admin/mediji/uredjivanje/{id}', [MedijController::class, 'uredjivanje'])->name('admin.mediji.uredjivanje');
+Route::post('/admin/mediji/uredjivanje/{id}', [MedijController::class, 'spasiPromjene'])->name('admin.mediji.azuriranje');
+Route::delete('/admin/mediji/{id}', [MedijController::class, 'obrisiMedij'])->name('admin.mediji.obrisi');
+Route::get('/admin/mediji/{id}', [MedijController::class, 'showMedij'])->name('admin.mediji.detalji');
+
 
 /* Rute za pregled liste partnera, dodavanje partnera, pregled, uređivanje i brisanje partnera*/
-Route::get('/admin/partneri', [PartnerController::class, 'getPartneri'])->name('admin.partneri');
-Route::get('/admin/partneri/dodavanje', [PartnerController::class, 'dodajPartnera'])->name('admin.partneri.dodavanje');
-Route::post('/admin/partneri', [PartnerController::class, 'spasiPartnera'])->name('admin.partneri.spasavanje');
+Route::resource('admin/partneri', PartnerController::class);
+Route::get('/partneri/search', [PartnerController::class, 'search'])->name('admin.partneri.search');
 
 /* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti*/
 /*Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
@@ -101,5 +111,6 @@ Route::post('/admin/prijave', [PrijavaUcesnikaController::class, 'spasiBodovanje
 /* Ruta za pregled rang liste*/
 Route::get('/admin/rang', [PrijavaUcesnikaController::class, 'getRang'])->name('admin.rang');
 
-/* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti */
-Route::Resource('/admin/novosti', NovostController::class);
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

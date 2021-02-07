@@ -12,25 +12,42 @@
                 <p>Dodavanje novog treninga</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.treninzi') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na treninge</a>
+                <a href="{{ route('admin.treninzi') }}"
+                    class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na treninge</a>
             </div>
-            <form class="m-5" action="{{ route('admin.treninzi.spasavanje') }}" method="POST">
+            <form class="m-5" action="{{ route('admin.treninzi.spasavanje') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-row">
-                    <div class="form-group col-md-12 px-5">
-                        <label for="nazivTreninga">Naziv</label>
-                        <input type="text" class="form-control" id="nazivTreninga" placeholder="Naziv">
+                    <div class="form-group col-md-6">
+                        <label for="naziv">Naziv</label>
+                        <input type="text" class="form-control" id="naziv" placeholder="Naziv" name="naziv"
+                            value="{{ old('naziv') }}">
+                        @if ($errors->first('naziv'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('naziv') }}
+                            </div>
+                        @endif
                     </div>
-                    <div class="form-group col-md-12 px-5">
-                        <label for="pozicijaOpis">Opis</label>
-                        <textarea class="form-control" id="pozicijaOpis" rows="3"></textarea>
+                    <div class="form-group col-md-6">
+                        <label for="opis">Opis</label>
+                        <input type="text" class="form-control" id="opis" placeholder="Opis" name="opis"
+                            value="{{ old('opis') }}">
+                        @if ($errors->first('opis'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('opis') }}
+                            </div>
+                        @endif
                     </div>
-                    <div class="custom-file col-md-6 mt-4 ml-5">
-                        <input type="file" class="custom-file-input" id="slikaTrening">
-                        <label class="custom-file-label" for="slikaTrening">Umetni sliku</label>
+                    <div class="custom-file col-md-6 mt-4">
+                        <input type="file" class="custom-file-input" id="slika" name="slika">
+                        <label class="custom-file-label" for="slika" name="slika">Umetni sliku</label>
+                        @if ($errors->first('slika'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('slika') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
-
                 <button type="submit" class="btn btn-primary mt-5">Spasi trening</button>
             </form>
         </div>

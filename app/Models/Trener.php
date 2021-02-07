@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trener extends Model
 {
+    use HasFactory;
+
     protected $table = 'trener';
 
     protected $fillable = ['ime', 'prezime', 'slika'];
@@ -20,4 +22,6 @@ class Trener extends Model
     {
         return $this->belongsToMany('App\Models\Trening', 'edicija_trener_trening');
     }
+
+    use HasFactory;
 }

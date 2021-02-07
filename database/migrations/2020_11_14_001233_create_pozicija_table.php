@@ -16,7 +16,7 @@ class CreatePozicijaTable extends Migration
         Schema::create('pozicija', function (Blueprint $table) {
             $table->id();
             $table->string('naziv');
-            $table->string('opis');
+            $table->text('opis');
             $table->timestamps();
         });
     }

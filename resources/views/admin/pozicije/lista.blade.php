@@ -12,34 +12,47 @@
                 <p>Pozicije</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.pozicije.dodavanje') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novu poziciju</a>
-                <form class="form-inline ml-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <a href="{{ route('pozicije.create') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Dodaj novu poziciju</a>
+                <form class="form-inline ml-auto mt-2 mt-lg-0" type="GET" action="{{ url('/pozicije/search')}}">
+                    <input class="form-control mr-sm-2" type="search" name="pozicija_search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+
             </div>
             <table class="table teble-responsive table-hover mt-5">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Naziv pozicije</th>
-                        <th scope="col">Opis pozicije</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 6; $i++) <tr>
-                        <th scope="row">1</th>
-                        <td>Glavni organizator</td>
-                        <td>Ja sam glavni!</td>
-                        <td>
-                            <!-- Umjesto linka a trebat će koristiti button i post metode da bi se informacije proslijedile pogledima-->
-                            <a class="btn-kontrole btn btn-outline-info btn-sm item">View</a>
-                            <a class="btn btn-outline-success btn-sm item">Edit</a>
-                            <a href="#myModal" data-toggle="modal" class="btn btn-outline-danger btn-sm item">Delete</a>
-                        </td>
-                        </tr>                  
-                     @endfor
+                    @php
+                        $brojac = 1;
+                    @endphp
+
+                    @foreach ($pozicije as $pozicija)
+                        <tr>
+                            <td scope="row">{{$brojac}}</td>
+                            <td>{{$pozicija->naziv}}</td>
+                            <td>
+                                <a href="pozicije/{{$pozicija->id}}" class="btn-kontrole btn btn-info btn-sm item">View</a>
+                                <a href="pozicije/{{$pozicija->id}}/edit" class="btn btn-success btn-sm item">Edit</a>
+                            </td>
+                            <td>
+                                <form action="{{ route('pozicije.destroy', $pozicija) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                <button type="submit" onclick="return confirm('Da li si siguran da zelis izbrisati poziciju: {{$pozicija->naziv}}?')" class="btn btn-danger btn-sm item">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @php
+                        $brojac= $brojac + 1;
+                    @endphp
+                    @endforeach
+
                 </tbody>
             </table>
         </div>

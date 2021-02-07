@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEdicijaOrganizatorPozicijaTable extends Migration
 {
-    /**
+    /*
+     *
      * Run the migrations.
      *
      * @return void

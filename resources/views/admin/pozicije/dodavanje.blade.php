@@ -12,18 +12,28 @@
                 <p>Dodavanje nove pozicije</p>
             </div>
             <div class="row m-2 p-1">
-                <a href="{{ route('admin.pozicije') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na pozicije</a>
+                <a href="{{ route('pozicije.index') }}" class="btn btn-sm  btn-outline-success col-12 col-sm-3">Nazad na pozicije</a>
             </div>
-            <form class="m-5" action="{{ route('admin.pozicije.spasavanje') }}" method="POST">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form class="m-5" action="{{ route('pozicije.store') }}" method="POST"  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="pozicijaNaziv">Naziv</label>
-                        <input type="text" class="form-control" id="pozicijaNaziv" placeholder="Naziv">
+                        <input type="text" class="form-control" id="pozicijaNaziv" name="naziv" placeholder="Naziv">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="pozicijaOpis">Opis</label>
-                        <textarea class="form-control" id="pozicijaOpis" rows="3"></textarea>
+                        <textarea class="form-control" id="pozicijaOpis" rows="3" name="opis"></textarea>
                     </div>
 
                 </div>
