@@ -19,7 +19,7 @@ class NovostController extends Controller
     {
         $poStranici = 10;
 
-        // Pretraga
+        // Pretraga - search
         $keyword = $request->get('search');
         if (!empty($keyword)) {
             $novosti = Novost::
