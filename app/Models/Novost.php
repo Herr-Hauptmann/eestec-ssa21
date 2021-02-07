@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Novost extends Model
 {
+    use HasFactory;
     protected $table = 'novost';
 
     protected $fillable = ['naslov', 'tekst', 'slika', 'datum'];

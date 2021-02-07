@@ -89,9 +89,9 @@ Route::resource('admin/partneri', PartnerController::class);
 Route::get('/partneri/search', [PartnerController::class, 'search'])->name('admin.partneri.search');
 
 /* Rute za pregled liste novosti, dodavanje novosti, pregled, uređivanje i brisanje novosti*/
-Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
+/*Route::get('/admin/novosti', [NovostController::class, 'getNovosti'])->name('admin.novosti');
 Route::get('/admin/novosti/dodavanje', [NovostController::class, 'dodajNovost'])->name('admin.novosti.dodavanje');
-Route::post('/admin/novosti', [NovostController::class, 'spasiNovost'])->name('admin.novosti.spasavanje');
+Route::post('/admin/novosti', [NovostController::class, 'spasiNovost'])->name('admin.novosti.spasavanje');*/
 
 /* Rute za pregled liste izjave, dodavanje izjave, pregled, uređivanje i brisanje izjave*/
 Route::get('/admin/izjave', [IzjavaController::class, 'getIzjave'])->name('admin.izjave');
